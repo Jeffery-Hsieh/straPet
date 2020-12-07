@@ -22,7 +22,7 @@ const VolunteerScreen = () => {
           justifyContent: "center",
         }}
       >
-        <Text>Volunteer</Text>
+        <Text style={{ fontSize: 30 }}>Volunteer</Text>
       </View>
       <Searchbar
         placeholder="Search"
