@@ -7,8 +7,11 @@ import {
   Image,
   Button,
 } from "react-native";
+import { Searchbar } from "react-native-paper";
 
 const VolunteerScreen = () => {
+  const [searchQuery, setSearchQuery] = React.useState("");
+  const onChangeSearch = (query) => setSearchQuery(query);
   return (
     <Fragment>
       <View
@@ -21,6 +24,11 @@ const VolunteerScreen = () => {
       >
         <Text>Volunteer</Text>
       </View>
+      <Searchbar
+        placeholder="Search"
+        onChangeText={onChangeSearch}
+        value={searchQuery}
+      />
       <View style={{ flex: 3.8, backgroundColor: "#fff" }}>
         <Text style={{ backgroundColor: "#fff" }}>
           <Image
