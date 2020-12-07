@@ -24,33 +24,52 @@ const VolunteerScreen = () => {
       >
         <Text style={{ fontSize: 30 }}>Volunteer</Text>
       </View>
-      <Searchbar
-        placeholder="Search"
-        onChangeText={onChangeSearch}
-        value={searchQuery}
-      />
       <View style={{ flex: 3.8, backgroundColor: "#fff" }}>
-        <Text style={{ backgroundColor: "#fff" }}>
+        <Searchbar
+          placeholder="Search"
+          onChangeText={onChangeSearch}
+          value={searchQuery}
+          style={{ flex: 0.12 }}
+        />
+        <View
+          style={{ flex: 0.12, backgroundColor: "#fff", flexDirection: "row" }}
+        >
           <Image
             style={{ width: 50, height: 50, borderRadius: 400 / 2 }}
             source={require("./cat.jpg")}
           />
-          <Text>Banqiao Public Shelter</Text>
-        </Text>
-        <Text style={{ backgroundColor: "#fff" }}>
+          <Text>
+            {" "}
+            Banqiao Public Shelter{"\n"}
+            1F., No. 28, Bancheng Rd., Banqiao Dist., New Taipei City 220
+          </Text>
+        </View>
+        <View
+          style={{ flex: 0.12, backgroundColor: "#fff", flexDirection: "row" }}
+        >
           <Image
             style={{ width: 50, height: 50, borderRadius: 400 / 2 }}
             source={require("./shiba.jpg")}
           />
-          <Text>Taipei City Animal Protection Office</Text>
-        </Text>
-        <Text style={{ backgroundColor: "#fff" }}>
+          <Text>
+            {" "}
+            Taipei City Animal Protection Office {"\n"} No. 852, Tanmei St.,
+            Neihu Dist., Taipei City 114
+          </Text>
+        </View>
+        <View
+          style={{ flex: 0.12, backgroundColor: "#fff", flexDirection: "row" }}
+        >
           <Image
             style={{ width: 50, height: 50, borderRadius: 400 / 2 }}
             source={require("./dog.jpg")}
           />
-          <Text>Zhonghe Public Shelter</Text>
-        </Text>
+          <Text>
+            {" "}
+            Zhonghe Public Shelter {"\n"} 1F., No. 28, Bancheng Rd., Banqiao
+            Dist., New Taipei City 220
+          </Text>
+        </View>
       </View>
     </Fragment>
   );
