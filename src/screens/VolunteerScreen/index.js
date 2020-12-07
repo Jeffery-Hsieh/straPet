@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Image,
   Button,
+  TouchableOpacity,
 } from "react-native";
 import { Searchbar } from "react-native-paper";
 
@@ -31,82 +32,52 @@ const VolunteerScreen = () => {
           value={searchQuery}
           style={{ flex: 0.12 }}
         />
-        <View
-          style={{
-            flex: 0.12,
-            backgroundColor: "#fff",
-            flexDirection: "row",
-            marginLeft: 10,
-            marginRight: 10,
-          }}
-        >
-          <Image
-            style={{ width: 50, height: 50, borderRadius: 400 / 2 }}
-            source={require("./cat.jpg")}
-          />
+        <View style={styles.content}>
+          <Image style={styles.imageStyle} source={require("./cat.jpg")} />
           <Text>
             {" "}
-            <Text style={{ fontSize: 17 }}>Banqiao Public Shelter</Text>
+            <Text style={styles.name}>Banqiao Public Shelter</Text>
             {"\n"}
-            <Text style={{ color: "grey", fontSize: 12 }}>
+            <Text style={styles.addr}>
               {" "}
               1F, No. 28, Bancheng Rd, Banqiao Dist,{"\n"} New Taipei City 220
             </Text>
           </Text>
-          <Button
-            title="More Info"
-            style={styles.loginScreenButton}
-            underlayColor="#fff"
-            accessibilityLabel="Learn more about this purple button"
-          />
+          <TouchableOpacity style={styles.button}>
+            <Text style={styles.buttonText}> More Info </Text>
+          </TouchableOpacity>
         </View>
-        <View
-          style={{
-            flex: 0.12,
-            backgroundColor: "#fff",
-            flexDirection: "row",
-            marginLeft: 10,
-            marginRight: 10,
-          }}
-        >
-          <Image
-            style={{ width: 50, height: 50, borderRadius: 400 / 2 }}
-            source={require("./shiba.jpg")}
-          />
+        <View style={styles.content}>
+          <Image style={styles.imageStyle} source={require("./shiba.jpg")} />
           <Text>
             {" "}
-            <Text style={{ fontSize: 17 }}>
-              Taipei City Animal Protection Office
-            </Text>
+            <Text style={styles.name}>Taipei City Animal Protectio..</Text>
             {"\n"}
-            <Text style={{ color: "grey", fontSize: 12 }}>
+            <Text style={styles.addr}>
               {" "}
-              No. 852, Tanmei St, Neihu Dist, Taipei City 114
+              No. 852, Tanmei St, Neihu Dist,
+              {"\n"}
+              Taipei City 114
             </Text>
           </Text>
+          <TouchableOpacity style={styles.button}>
+            <Text style={styles.buttonText}> More Info </Text>
+          </TouchableOpacity>
         </View>
-        <View
-          style={{
-            flex: 0.12,
-            backgroundColor: "#fff",
-            flexDirection: "row",
-            marginLeft: 10,
-            marginRight: 10,
-          }}
-        >
-          <Image
-            style={{ width: 50, height: 50, borderRadius: 400 / 2 }}
-            source={require("./dog.jpg")}
-          />
+        <View style={styles.content}>
+          <Image style={styles.imageStyle} source={require("./dog.jpg")} />
           <Text>
             {" "}
-            <Text style={{ fontSize: 17 }}>Zhonghe Public Shelter</Text>
+            <Text style={styles.name}>Zhonghe Public Shelter</Text>
             {"\n"}
-            <Text style={{ color: "grey", fontSize: 12 }}>
+            <Text style={styles.addr}>
               {" "}
               1F, No. 28, Bancheng Rd, Banqiao Dist,{"\n"} New Taipei City 220
             </Text>
           </Text>
+          <TouchableOpacity style={styles.button}>
+            <Text style={styles.buttonText}> More Info </Text>
+          </TouchableOpacity>
         </View>
       </View>
     </Fragment>
@@ -114,21 +85,39 @@ const VolunteerScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    //justifyContent: "center",
-    //alignItems: "center",
+  content: {
+    flex: 0.12,
+    backgroundColor: "#fff",
+    flexDirection: "row",
+    marginLeft: 10,
+    marginRight: 10,
   },
-  loginScreenButton: {
-    marginRight: 50,
-    marginLeft: 50,
-    marginTop: 10,
-    paddingTop: 10,
-    paddingBottom: 10,
-    backgroundColor: "#1E6738",
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: "#fff",
+  name: {
+    fontSize: 17,
+  },
+  addr: {
+    color: "grey",
+    fontSize: 12,
+  },
+  imageStyle: {
+    width: 50,
+    height: 50,
+    borderRadius: 400 / 2,
+  },
+  button: {
+    margin: 20,
+    padding: 10,
+    paddingLeft: 10,
+    paddingRight: 10,
+    backgroundColor: "#406E9F",
+    borderRadius: 7,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  buttonText: {
+    color: "#fff",
+    fontSize: 12,
+    fontWeight: "bold",
   },
 });
 export default VolunteerScreen;
