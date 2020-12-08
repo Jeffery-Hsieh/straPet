@@ -9,7 +9,7 @@ const VolunteerScreen = ({ navigation }) => {
   const onChangeSearch = (query) => setSearchQuery(query);
 
   const moveToInfoScreen = (id) => {
-    navigation.navigate("VolunteerDetail", { volunteerId: id });
+    navigation.push("VolunteerDetail", { volunteerId: id });
   };
 
   const shelters = volunteers.map(
@@ -21,10 +21,11 @@ const VolunteerScreen = ({ navigation }) => {
           <Text style={styles.addr}>{address}</Text>
           <Text style={styles.addr}>{city}</Text>
         </View>
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText} onPress={() => moveToInfoScreen(id)}>
-            More Info{" "}
-          </Text>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => moveToInfoScreen(id)}
+        >
+          <Text style={styles.buttonText}>More Info </Text>
         </TouchableOpacity>
       </View>
     )
@@ -32,16 +33,6 @@ const VolunteerScreen = ({ navigation }) => {
 
   return (
     <Fragment>
-      <View
-        style={{
-          flex: 0.5,
-          backgroundColor: "#FFE4B5",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        <Text style={{ fontSize: 30 }}>Volunteer</Text>
-      </View>
       <View style={{ flex: 3.8, backgroundColor: "#fff" }}>
         <Searchbar
           placeholder="Search"
@@ -91,4 +82,5 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
 });
+
 export default VolunteerScreen;
