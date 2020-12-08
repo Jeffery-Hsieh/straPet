@@ -2,6 +2,7 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
+import { SessionProvider } from "./store/context";
 
 // Tabs
 import TabBar from "./components/TabBar";
@@ -9,7 +10,8 @@ import Home from "./screens/HomeScreen";
 import Message from "./screens/MessageScreen";
 import Upload from "./screens/UploadScreen";
 import Favorite from "./screens/FavoriteScreen";
-import Volunteer from "./screens/VolunteerScreen";
+import VolunteerList from "./screens/VolunteerListScreen";
+import VolunteerDetail from "./screens/VolunteerDetailScreen";
 
 import ChatScreen from "./screens/ChatScreen";
 
@@ -42,7 +44,7 @@ const FavoriteStack = () => (
 
 const VolunteerStack = () => (
   <Stack.Navigator initialRouteName="Volunteer" headerMode="none">
-    <Stack.Screen name="Volunteer" component={Volunteer} />
+    <Stack.Screen name="Volunteer" component={VolunteerList} />
   </Stack.Navigator>
 );
 
@@ -57,12 +59,15 @@ const TabStack = () => (
 );
 
 const routes = () => (
-  <NavigationContainer>
-    <Stack.Navigator>
-      <Stack.Screen name="Tab" component={TabStack} />
-      <Stack.Screen name="ChatScreen" component={ChatScreen} />
-    </Stack.Navigator>
-  </NavigationContainer>
+  <SessionProvider>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Tab" component={TabStack} />
+        <Stack.Screen name="ChatScreen" component={ChatScreen} />
+        <Stack.Screen name="VolunteerDetail" component={VolunteerDetail} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  </SessionProvider>
 );
 
 const styles = (theme) => ({
