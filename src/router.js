@@ -19,36 +19,55 @@ const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
 const HomeStack = () => (
-  <Stack.Navigator initialRouteName="Home" headerMode="none">
+  <Stack.Navigator initialRouteName="Home">
     <Stack.Screen name="Home" component={Home} />
   </Stack.Navigator>
 );
 
 const MessageStack = () => (
-  <Stack.Navigator initialRouteName="Message" headerMode="none">
-    <Stack.Screen name="Home" component={Message} />
+  <Stack.Navigator initialRouteName="Message">
+    <Stack.Screen name="Message" component={Message} />
   </Stack.Navigator>
 );
 
 const UploadStack = () => (
-  <Stack.Navigator initialRouteName="Upload" headerMode="none">
-    <Stack.Screen name="Home" component={Upload} />
+  <Stack.Navigator initialRouteName="Upload">
+    <Stack.Screen name="Upload" component={Upload} />
   </Stack.Navigator>
 );
 
 const FavoriteStack = () => (
-  <Stack.Navigator initialRouteName="Favorite" headerMode="none">
+  <Stack.Navigator initialRouteName="Favorite">
     <Stack.Screen name="Favorite" component={Favorite} />
   </Stack.Navigator>
 );
 
-const VolunteerStack = () => (
-  <Stack.Navigator initialRouteName="Volunteer" headerMode="none">
-    <Stack.Screen name="Volunteer" component={VolunteerList} />
-  </Stack.Navigator>
-);
+const VolunteerStack = () => {
+  const screenOptionStyle = {
+    headerStyle: {
+      backgroundColor: "#F1E3CD",
+    },
+    headerTitleStyle: {
+      fontFamily: "galada",
+      fontSize: 30,
+    },
+    headerTintColor: "#5C5341",
+    headerBackTitle: "Back",
+  };
 
-const TabStack = () => (
+  return (
+    <Stack.Navigator
+      initialRouteName="Volunteer"
+      screenOptions={screenOptionStyle}
+    >
+      <Stack.Screen name="Volunteer" component={VolunteerList} />
+      <Stack.Screen name="VolunteerDetail" component={VolunteerDetail} />
+      <Stack.Screen name="Chat" component={ChatScreen} />
+    </Stack.Navigator>
+  );
+};
+
+const BottomTabNavigator = () => (
   <Tab.Navigator tabBar={(props) => <TabBar {...props} />}>
     <Tab.Screen name="Home" component={HomeStack} />
     <Tab.Screen name="Message" component={MessageStack} />
@@ -61,11 +80,7 @@ const TabStack = () => (
 const routes = () => (
   <SessionProvider>
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Tab" component={TabStack} />
-        <Stack.Screen name="ChatScreen" component={ChatScreen} />
-        <Stack.Screen name="VolunteerDetail" component={VolunteerDetail} />
-      </Stack.Navigator>
+      <BottomTabNavigator />
     </NavigationContainer>
   </SessionProvider>
 );

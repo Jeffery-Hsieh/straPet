@@ -11,23 +11,24 @@ const VolunteerDetailScreen = ({ navigation, route, eva }) => {
   const { shelterName, image, address, city } = volunteers[volunteerId];
 
   const moveToChatScreen = () => {
-    navigation.navigate("ChatScreen");
+    navigation.navigate("Chat");
   };
 
   return (
     <View style={eva.style.container}>
-      <Image style={eva.style.avatar} source={image} />
+      <View style={eva.style.avatar}>
+        <Image style={eva.style.avatarImage} source={image} />
+      </View>
       <View style={eva.style.info}>
-        {/* TODO: Finish styling */}
         <Text style={eva.style.title}>{shelterName}</Text>
         <Text style={eva.style.text}>{address}</Text>
         <Text style={eva.style.text}>{city}</Text>
       </View>
-      <View style={eva.style.btns}>
-        <Text style={eva.style.followBtn}>FOLLOW</Text>
+      <View style={eva.style.followBtn}>
+        <Text style={eva.style.followText}>FOLLOW</Text>
       </View>
-      <View style={eva.style.btns}>
-        <Text style={eva.style.messageBtn} onPress={moveToChatScreen}>
+      <View style={eva.style.messageBtn}>
+        <Text style={eva.style.messageText} onPress={moveToChatScreen}>
           MESSAGE
         </Text>
       </View>

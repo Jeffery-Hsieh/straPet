@@ -9,6 +9,8 @@
   },
   "dependencies": {
     "@eva-design/eva": "^2.0.0",
+    "@expo-google-fonts/galada": "^0.1.0",
+    "@expo-google-fonts/inter": "^0.1.0",
     "@expo/webpack-config": "^0.12.49",
     "@react-native-community/masked-view": "0.1.10",
     "@react-native-community/netinfo": "5.9.6",
@@ -19,6 +21,7 @@
     "@ui-kitten/eva-icons": "^5.0.0",
     "expo": "~39.0.2",
     "expo-document-picker": "~8.4.0",
+    "expo-font": "~8.3.0",
     "expo-image-picker": "~9.1.1",
     "expo-permissions": "~9.3.0",
     "expo-status-bar": "~1.0.2",

@@ -2,41 +2,55 @@ const styles = (theme) => ({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    flexDirection: "column",
     padding: 15,
-  },
-  info: {
-    flex: 2,
-    flexDirection: "column",
-    justifyContent: "space-around",
-  },
-  text: {
-    color: "grey",
-    fontSize: 12,
+    textAlign: "center",
   },
   avatar: {
+    flex: 1,
+    marginTop: 70,
+    marginBottom: 100,
+    alignItems: "center",
+  },
+  avatarImage: {
     width: 200,
     height: 200,
     borderRadius: 200 / 2,
   },
-  btns: {
-    flex: 1,
-    justifyContent: "center",
+  info: {
+    flex: 2,
     alignItems: "center",
   },
-  followBtn: {
-    flex: 1,
-    color: "#fff",
+  title: {
+    width: 250,
+    fontWeight: "bold",
     textAlign: "center",
-    textAlignVertical: "center",
+    color: "#000",
+    fontSize: 25,
+    marginBottom: 50,
+  },
+  text: {
+    color: "grey",
+    fontSize: 15,
+  },
+  followBtn: {
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+    height: 50,
     backgroundColor: "#000000",
+    marginBottom: 10,
+  },
+  followText: {
+    color: "#fff",
   },
   messageBtn: {
-    flex: 1,
+    width: "100%",
+    height: 50,
+    justifyContent: "center",
+    alignItems: "center",
     borderWidth: 4,
-    textAlign: "center",
-    textAlignVertical: "center",
-    borderColor: "#fff",
+    borderColor: "#000",
+    borderRadius: 5,
   },
 });
 
