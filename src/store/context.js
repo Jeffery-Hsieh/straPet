@@ -1,7 +1,11 @@
+import uuid from "react-native-uuid";
 import React, { createContext } from "react";
 import volunteers from "./constant/volunteers";
 
+// TODO: Chat firestore
 const initialState = {
+  userId: uuid.v1(),
+  authenticated: false,
   volunteers: volunteers,
 };
 
