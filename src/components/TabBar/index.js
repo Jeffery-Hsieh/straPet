@@ -36,7 +36,7 @@ const TabBarComponent = ({ eva, navigation, state }) => {
   const { index: selectedIndex } = state;
   return (
     <BottomNavigation
-      selectedIndex={0}
+      selectedIndex={state.index}
       onSelect={changeTab}
       appearance="noIndicator"
       style={style.tabBar}
