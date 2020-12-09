@@ -12,7 +12,10 @@ const VolunteerScreen = ({ navigation }) => {
     navigation.push("VolunteerDetail", { volunteerId: id });
   };
 
-  const shelters = volunteers.map(
+  const shelters = volunteers.filter( item => 
+    // TODO: using rxjs would be better
+    item.shelterName.includes(searchQuery)
+  ).map(
     ({ id, shelterName, image, address, city }) => (
       <View key={id} style={styles.content}>
         <Image style={styles.imageStyle} source={image} />
