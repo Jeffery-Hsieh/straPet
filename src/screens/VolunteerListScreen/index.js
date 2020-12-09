@@ -12,11 +12,12 @@ const VolunteerScreen = ({ navigation }) => {
     navigation.push("VolunteerDetail", { volunteerId: id });
   };
 
-  const shelters = volunteers.filter( item => 
-    // TODO: using rxjs would be better
-    item.shelterName.includes(searchQuery)
-  ).map(
-    ({ id, shelterName, image, address, city }) => (
+  const shelters = volunteers
+    .filter((item) =>
+      // TODO: using rxjs would be better
+      item.shelterName.includes(searchQuery)
+    )
+    .map(({ id, shelterName, image, address, city }) => (
       <View key={id} style={styles.content}>
         <Image style={styles.imageStyle} source={image} />
         <View style={{ flex: 1, flextDirection: "column" }}>
@@ -31,8 +32,7 @@ const VolunteerScreen = ({ navigation }) => {
           <Text style={styles.buttonText}>More Info </Text>
         </TouchableOpacity>
       </View>
-    )
-  );
+    ));
 
   return (
     <Fragment>

@@ -85,10 +85,4 @@ const routes = () => (
   </SessionProvider>
 );
 
-const styles = (theme) => ({
-  container: {
-    flex: 1,
-  },
-});
-
 export default routes;

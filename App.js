@@ -9,8 +9,11 @@ import * as Font from "expo-font";
 import { theme } from "./src/theme";
 
 export default function App() {
-  useEffect(async () => {
-    await Font.loadAsync({ galada: require("./assets/Galada-Regular.ttf") });
+  useEffect(() => {
+    async function getFont() {
+      await Font.loadAsync({ galada: require("./assets/Galada-Regular.ttf") });
+    }
+    getFont();
   }, []);
 
   return (
