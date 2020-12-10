@@ -1,8 +1,10 @@
 import React, { createContext } from "react";
 import volunteers from "./constant/volunteers";
+import animals from "./constant/animals";
 
 const initialState = {
   volunteers: volunteers,
+  animals: animals,
 };
 
 const SessionContext = createContext(initialState);
