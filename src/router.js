@@ -12,6 +12,7 @@ import Upload from "./screens/UploadScreen";
 import Favorite from "./screens/FavoriteScreen";
 import VolunteerList from "./screens/VolunteerListScreen";
 import VolunteerDetail from "./screens/VolunteerDetailScreen";
+import HomeDetailScreen from "./screens/HomeDetailScreen";
 
 import ChatScreen from "./screens/ChatScreen";
 
@@ -23,6 +24,7 @@ const HomeStack = () => (
     screenOptions={screenOptionStyle}
   >
     <Stack.Screen name="Home" component={Home} />
+    <Stack.Screen name="HomeDetailScreen" component={HomeDetailScreen} />
   </Stack.Navigator>
 );
 
