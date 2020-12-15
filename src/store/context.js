@@ -1,12 +1,13 @@
-import uuid from "react-native-uuid";
-import React, { createContext } from "react";
+import React, { createContext, useState } from "react";
 import volunteers from "./constant/volunteers";
 import animals from "./constant/animals";
+import firebase from "../services/firebase";
 
 // TODO: Chat firestore
 const initialState = {
-  userId: uuid.v1(),
+  userId: "Zk18OTDq8N1Ly9YtEle3",
   authenticated: false,
+  firebase: firebase,
   volunteers: volunteers,
   animals: animals,
 };
@@ -14,8 +15,10 @@ const initialState = {
 const SessionContext = createContext(initialState);
 
 export const SessionProvider = ({ children }) => {
+  const [session, setSession] = useState(initialState);
+
   return (
-    <SessionContext.Provider value={initialState}>
+    <SessionContext.Provider value={[session, setSession]}>
       {children}
     </SessionContext.Provider>
   );

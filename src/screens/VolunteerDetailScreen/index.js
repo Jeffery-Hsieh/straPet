@@ -1,17 +1,19 @@
 import React, { Fragment, useContext } from "react";
 import { withStyles } from "@ui-kitten/components";
-import { View, StyleSheet, Button, Image, Text } from "react-native";
+import { View, Image, Text, TouchableOpacity } from "react-native";
 import SessionContext from "../../store/context";
 import styles from "./VolunteerDetail.style";
 
 const VolunteerDetailScreen = ({ navigation, route, eva }) => {
-  const { volunteers } = useContext(SessionContext);
+  // TODO: Get chat groupId from db
+  const groupId = "pV343AjSSn7O0zbYwc4k";
+  const [session] = useContext(SessionContext);
   const { volunteerId } = route.params;
 
-  const { shelterName, image, address, city } = volunteers[volunteerId];
+  const { shelterName, image, address, city } = session.volunteers[volunteerId];
 
   const moveToChatScreen = () => {
-    navigation.navigate("Chat");
+    navigation.navigate("Chat", { groupId: groupId });
   };
 
   return (
@@ -24,14 +26,12 @@ const VolunteerDetailScreen = ({ navigation, route, eva }) => {
         <Text style={eva.style.text}>{address}</Text>
         <Text style={eva.style.text}>{city}</Text>
       </View>
-      <View style={eva.style.followBtn}>
+      <TouchableOpacity style={eva.style.followBtn}>
         <Text style={eva.style.followText}>FOLLOW</Text>
-      </View>
-      <View style={eva.style.messageBtn}>
-        <Text style={eva.style.messageText} onPress={moveToChatScreen}>
-          MESSAGE
-        </Text>
-      </View>
+      </TouchableOpacity>
+      <TouchableOpacity style={eva.style.messageBtn} onPress={moveToChatScreen}>
+        <Text style={eva.style.messageText}>MESSAGE</Text>
+      </TouchableOpacity>
     </View>
   );
 };

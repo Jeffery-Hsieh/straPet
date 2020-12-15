@@ -1,56 +1,68 @@
-import React, { useState, useCallback, useEffect } from "react";
-import { StyleSheet } from "react-native";
+import React, { useCallback, useContext, useEffect, useState } from "react";
+import { StyleSheet, View, ActivityIndicator } from "react-native";
 import { GiftedChat, Send } from "react-native-gifted-chat";
+import SessionContext from "../../store/context";
+import useGetMessages from "../../hooks/useGetMessages";
+import { IconButton } from "react-native-paper";
+import { toGiftChatMessageBlock } from "../../util/giftChatHelper";
+import * as firebase from "firebase";
 
-const ChatScreen = () => {
-  const [messages, setMessages] = useState([]);
+const ChatScreen = ({ route }) => {
+  const [session] = useContext(SessionContext);
+  const { firebase, userId } = session;
+  const { groupId } = route.params;
 
-  useEffect(() => {
-    setMessages([
-      {
-        _id: 1,
-        text: "Hello developer",
-        createdAt: new Date(),
-        user: {
-          _id: 2,
-          name: `HAHA`,
-          avatar: "https://placeimg.com/140/140/people",
-        },
-      },
-      {
-        _id: 2,
-        text: "This is the first message I got",
-        createdAt: new Date(),
-        user: {
-          _id: 2,
-          name: `HAHA`,
-          avatar: "https://placeimg.com/140/140/people",
-        },
-      },
-    ]);
-  }, []);
+  // // get messages
+  const [{ messages, isLoading, isError }, setMessages] = useGetMessages(
+    firebase,
+    groupId
+  );
 
-  const onSend = useCallback((messages = []) => {
-    setMessages((previousMessages) =>
-      GiftedChat.append(previousMessages, messages)
-    );
-  }, []);
+  const handleSend = async (messages) => {
+    const text = messages[0].text;
 
+    firebase
+      .firestore()
+      .collection("messages")
+      .doc(groupId)
+      .collection("chat")
+      .add({
+        sendAt: firebase.firestore.Timestamp.fromDate(new Date()),
+        text: text,
+        sender: userId,
+      });
+  };
+
+  // Send icon
   const renderSend = (props) => {
     return (
-      <Send {...props} containerStyle={styles.sendContainer}>
-        <SendIcon width={22.7} height={22.38} />
+      <Send {...props}>
+        <View style={styles.sendContainer}>
+          <IconButton icon="send-circle" size={32} color="#6646ee" />
+        </View>
       </Send>
+    );
+  };
+
+  const renderLoading = () => {
+    return (
+      <View style={styles.loadingContainer}>
+        <ActivityIndicator size="large" color="#6646ee" />
+      </View>
     );
   };
 
   return (
     <GiftedChat
       messages={messages}
-      onSend={(messages) => onSend(messages)}
+      onSend={handleSend}
       user={{
-        _id: 1,
+        _id: userId,
       }}
+      alwaysShowSend={true}
+      placeholder="Type your message here..."
+      renderSend={renderSend}
+      renderLoading={renderLoading}
     />
   );
 };
@@ -59,8 +71,6 @@ const styles = StyleSheet.create({
   sendContainer: {
     justifyContent: "center",
     alignItems: "center",
-    alignSelf: "center",
-    marginRight: 15,
   },
 });
 
