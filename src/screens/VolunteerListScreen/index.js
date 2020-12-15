@@ -5,14 +5,14 @@ import { Searchbar } from "react-native-paper";
 
 const VolunteerScreen = ({ navigation }) => {
   const [searchQuery, setSearchQuery] = React.useState("");
-  const { volunteers } = useContext(SessionContext);
+  const [session] = useContext(SessionContext);
   const onChangeSearch = (query) => setSearchQuery(query);
 
   const moveToInfoScreen = (id) => {
     navigation.push("VolunteerDetail", { volunteerId: id });
   };
 
-  const shelters = volunteers
+  const shelters = session.volunteers
     .filter((item) =>
       // TODO: using rxjs would be better
       item.shelterName.includes(searchQuery)
