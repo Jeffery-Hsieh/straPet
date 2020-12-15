@@ -9,17 +9,6 @@ import {
   TouchableOpacity, 
   Dimensions,
   FlatList } from "react-native";
-  import {
-    Button,
-    Icon,
-    Input,
-    Layout,
-    MenuItem,
-    OverflowMenu,
-    Select,
-    SelectItem,
-    Tooltip,
-  } from '@ui-kitten/components';
 
 import SessionContext from "../../store/context";
 import heart from "../../assets/images/heart.png"
@@ -29,7 +18,7 @@ const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 const HomeDetailScreen = ({ navigation, route }) => {
-  const state = { isPressed: false };
+  const [isPressed, setIsPressed] = useState(false);
   const { animals } = useContext(SessionContext);
   const { animalId } = route.params;
   
@@ -48,9 +37,15 @@ const HomeDetailScreen = ({ navigation, route }) => {
     />
     
 
-  var renderIcon = state.isPressed?
-      <Image style={styles.icon} source={heart_filled}/> :
-      <Image style={styles.icon} source={heart}/> ;
+  const renderIcon = isPressed?
+    <>
+      <Image style={styles.icon} source={heart_filled}/>
+      <Text>Saved</Text> 
+    </> :
+    <>
+      <Image style={styles.icon} source={heart}></Image>
+      <Text>Save</Text> 
+    </>;
 
   return (
     <View style={styles.container}>
@@ -61,7 +56,7 @@ const HomeDetailScreen = ({ navigation, route }) => {
       <View style={ styles.imageList}>
         {imageList}
       </View>
-      <TouchableOpacity onPress={ () => state.isPressed = !state.isPressed }>
+      <TouchableOpacity onPress={ () => setIsPressed( !isPressed ) }>
         { renderIcon }
       </TouchableOpacity>
       <View >
