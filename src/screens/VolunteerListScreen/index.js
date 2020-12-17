@@ -11,6 +11,7 @@ const VolunteerScreen = ({ navigation }) => {
   const moveToInfoScreen = (id) => {
     navigation.push("VolunteerDetail", { volunteerId: id });
   };
+  console.log(shelters);
 
   const shelters = session.volunteers
     .filter((item) =>
