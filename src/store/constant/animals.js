@@ -7,7 +7,7 @@ const animals = [
     breed: "mixed",
     city: "新北市",
     gender: "f",
-    tags: "",
+    tags: "#Quiet,Medium Size",
   },
   {
     id: 1,
@@ -21,7 +21,7 @@ const animals = [
     breed: "mixed",
     city: "桃園市",
     gender: "m",
-    tags: "",
+    tags: "#Puppy",
   },
   {
     id: 2,
@@ -31,7 +31,7 @@ const animals = [
     breed: "mixed",
     city: "苗栗市",
     gender: "f",
-    tags: "",
+    tags: "#Protective",
   },
   {
     id: 3,
@@ -41,7 +41,7 @@ const animals = [
     breed: "mixed",
     city: "高雄市",
     gender: "m",
-    tags: "",
+    tags: "#Play, Close to people",
   },
   {
     id: 4,
@@ -51,7 +51,7 @@ const animals = [
     breed: "shiba",
     city: "新竹市",
     gender: "f",
-    tags: "",
+    tags: "#Close to people",
   },
   {
     id: 5,
@@ -65,7 +65,7 @@ const animals = [
     breed: "migru",
     city: "臺南市",
     gender: "m",
-    tags: "",
+    tags: "#Play, Friendly",
   },
   {
     id: 6,
@@ -85,7 +85,7 @@ const animals = [
     breed: "mixed",
     city: "新北市",
     gender: "f",
-    tags: "",
+    tags: "#Introvert",
   },
   {
     id: 8,
@@ -95,7 +95,7 @@ const animals = [
     breed: "mixed",
     city: "新竹市",
     gender: "m",
-    tags: "",
+    tags: "#Cute, Play",
   },
   {
     id: 9,
@@ -105,7 +105,7 @@ const animals = [
     breed: "mixed",
     city: "臺中市",
     gender: "f",
-    tags: "",
+    tags: "#Quiet",
   },
   {
     id: 10,
@@ -115,7 +115,7 @@ const animals = [
     breed: "mixed",
     city: "金門縣",
     gender: "f",
-    tags: "",
+    tags: "#Introvert",
   },
 ];
 
