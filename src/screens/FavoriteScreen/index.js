@@ -2,10 +2,25 @@ import React, { Fragment, useContext } from "react";
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import SessionContext from "../../store/context";
 
-const FavoriteScreen = () => {
+const VolunteerScreen = () => {
+  const [session] = useContext(SessionContext);
+
+  const favoritelist = session.favoritelist.map(
+    ({ id, shelter, image, breed, gender }) => (
+      <View key={id} style={styles.content}>
+        <Image style={styles.imageStyle} source={image} />
+        <View style={{ flex: 1, flextDirection: "column" }}>
+          <Text style={styles.information}>Place: {shelter}</Text>
+          <Text style={styles.information}>Breed: {breed}</Text>
+          <Text style={styles.information}>Gender: {gender}</Text>
+        </View>
+      </View>
+    )
+  );
+
   return (
     <Fragment>
-      <Text>test</Text>
+      <View style={{ flex: 3.8, backgroundColor: "#fff" }}>{favoritelist}</View>
     </Fragment>
   );
 };
@@ -17,12 +32,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     margin: 15,
   },
-  name: {
+  information: {
     fontSize: 17,
-  },
-  addr: {
     color: "grey",
-    fontSize: 12,
   },
   imageStyle: {
     width: 50,
@@ -30,21 +42,6 @@ const styles = StyleSheet.create({
     marginRight: 10,
     borderRadius: 50 / 2,
   },
-  button: {
-    margin: 15,
-    padding: 10,
-    paddingLeft: 10,
-    paddingRight: 10,
-    backgroundColor: "#406E9F",
-    borderRadius: 7,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  buttonText: {
-    color: "#fff",
-    fontSize: 12,
-    fontWeight: "bold",
-  },
 });
 
-export default FavoriteScreen;
+export default VolunteerScreen;
