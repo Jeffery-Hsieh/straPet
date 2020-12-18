@@ -6,6 +6,7 @@ import {
   StyleSheet, 
   Image, 
   StatusBar, 
+  Button,
   TouchableOpacity, 
   Dimensions,
   FlatList } from "react-native";
@@ -50,8 +51,14 @@ const HomeDetailScreen = ({ navigation, route }) => {
   return (
     <View style={styles.container}>
       <View style={ styles.shelter}>
-        {/* <Image style={styles.shelterImage} ></Image> */}
-        <Text style={styles.shelterText}>{shelter}</Text>
+        <Image style={styles.shelterIcon} ></Image>
+        <View style={{height: 24}}>
+          <Text style={styles.shelterText}>{shelter}</Text>
+        </View>
+        <Button
+         title="Contact"
+         style={styles.contactButton}
+        />
       </View>
       <View style={ styles.imageList}>
         {imageList}
@@ -75,17 +82,37 @@ const HomeDetailScreen = ({ navigation, route }) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    //flex: 1,
     backgroundColor: "#fff",
     padding: 15,
   },
+  shelter: {
+    height: 24,
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  shelterIcon: {
+    width: 24,
+    height: 24,
+    backgroundColor: "#123456",
+    //alignSelf: 'flex-left',
+  },
   shelterText: {
-    fontSize: 24,
+    fontSize: 11,
     fontWeight: "bold",
-    flexDirection: "row",
-    alignSelf: 'flex-start',
+    //alignSelf: 'center',
+  },
+  contactButton: {
+    width: 74,
+    height: 24,
+    backgroundColor: '#406E9F',
+    //justifyContent: 'left',
+    //alignItems: 'flex-right',
+    //alignContent: 'flex-end',
   },
   imageList: {
+    height: 215,
     width: windowWidth,
   },
   image: {
