@@ -13,8 +13,9 @@ import Favorite from "./screens/FavoriteScreen";
 import VolunteerList from "./screens/VolunteerListScreen";
 import VolunteerDetail from "./screens/VolunteerDetailScreen";
 import HomeDetailScreen from "./screens/HomeDetailScreen";
-
 import ChatScreen from "./screens/ChatScreen";
+import EditTraitScreen from "./screens/EditTraitScreen";
+import UploadCompleteScreen from "./screens/UploadCompleteScreen";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -41,6 +42,11 @@ const UploadStack = () => (
     screenOptions={screenOptionStyle}
   >
     <Stack.Screen name="Upload" component={Upload} />
+    <Stack.Screen name="EditTraitScreen" component={EditTraitScreen} />
+    <Stack.Screen
+      name="UploadCompleteScreen"
+      component={UploadCompleteScreen}
+    />
   </Stack.Navigator>
 );
 

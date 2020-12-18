@@ -21,8 +21,9 @@ const Home = ({ navigation }) => {
 
   const Item = ({ id, image, shelter, animal, breed, tags }) => (
     <View 
-    style={styles.item} 
-    onStartShouldSetResponder={() => moveToInfoScreen(id)}>
+      style={styles.item} 
+      onStartShouldSetResponder={() => moveToInfoScreen(id)}
+    >
       <Image style={styles.image} source={image[0]} />
       <View style={styles.contentView}>
         <Text style={styles.title}>{animal}/{breed}</Text>
