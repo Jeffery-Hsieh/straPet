@@ -7,17 +7,21 @@ const animals = [
     breed: "mixed",
     city: "新北市",
     gender: "f",
-    tags: ""
+    tags: "#Quiet,Medium Size",
   },
   {
     id: 1,
-    image: [require("../../assets/images/animals/1_0.jpg"), require("../../assets/images/animals/1_1.jpg"), require("../../assets/images/animals/1_2.jpg")],
+    image: [
+      require("../../assets/images/animals/1_0.jpg"),
+      require("../../assets/images/animals/1_1.jpg"),
+      require("../../assets/images/animals/1_2.jpg"),
+    ],
     shelter: "桃園市動物保護教育園區",
     animal: "dog",
     breed: "mixed",
     city: "桃園市",
     gender: "m",
-    tags: ""
+    tags: "#Puppy",
   },
   {
     id: 2,
@@ -27,7 +31,7 @@ const animals = [
     breed: "mixed",
     city: "苗栗市",
     gender: "f",
-    tags: ""
+    tags: "#Protective",
   },
   {
     id: 3,
@@ -37,7 +41,7 @@ const animals = [
     breed: "mixed",
     city: "高雄市",
     gender: "m",
-    tags: ""
+    tags: "#Play, Close to people",
   },
   {
     id: 4,
@@ -47,17 +51,21 @@ const animals = [
     breed: "shiba",
     city: "新竹市",
     gender: "f",
-    tags: ""
+    tags: "#Close to people",
   },
   {
     id: 5,
-    image: [require("../../assets/images/animals/5_0.jpg"), require("../../assets/images/animals/5_1.jpg"), require("../../assets/images/animals/5_2.jpg")],
+    image: [
+      require("../../assets/images/animals/5_0.jpg"),
+      require("../../assets/images/animals/5_1.jpg"),
+      require("../../assets/images/animals/5_2.jpg"),
+    ],
     shelter: "臺南市動物之家灣裡站",
     animal: "dog",
     breed: "migru",
     city: "臺南市",
     gender: "m",
-    tags: ""
+    tags: "#Play, Friendly",
   },
   {
     id: 6,
@@ -67,7 +75,7 @@ const animals = [
     breed: "kingira",
     city: "高雄市",
     gender: "f",
-    tags: ""
+    tags: "",
   },
   {
     id: 7,
@@ -77,7 +85,7 @@ const animals = [
     breed: "mixed",
     city: "新北市",
     gender: "f",
-    tags: ""
+    tags: "#Introvert",
   },
   {
     id: 8,
@@ -87,7 +95,7 @@ const animals = [
     breed: "mixed",
     city: "新竹市",
     gender: "m",
-    tags: ""
+    tags: "#Cute, Play",
   },
   {
     id: 9,
@@ -97,7 +105,7 @@ const animals = [
     breed: "mixed",
     city: "臺中市",
     gender: "f",
-    tags: ""
+    tags: "#Quiet",
   },
   {
     id: 10,
@@ -107,7 +115,7 @@ const animals = [
     breed: "mixed",
     city: "金門縣",
     gender: "f",
-    tags: ""
+    tags: "#Introvert",
   },
 ];
 
