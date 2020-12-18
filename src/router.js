@@ -12,6 +12,7 @@ import Upload from "./screens/UploadScreen";
 import Favorite from "./screens/FavoriteScreen";
 import VolunteerList from "./screens/VolunteerListScreen";
 import VolunteerDetail from "./screens/VolunteerDetailScreen";
+import HomeDetailScreen from "./screens/HomeDetailScreen";
 import ChatScreen from "./screens/ChatScreen";
 import EditTraitScreen from "./screens/EditTraitScreen";
 import UploadCompleteScreen from "./screens/UploadCompleteScreen";
@@ -20,19 +21,26 @@ const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
 const HomeStack = () => (
-  <Stack.Navigator initialRouteName="Home">
+  <Stack.Navigator initialRouteName="Home"
+    screenOptions={screenOptionStyle}
+  >
     <Stack.Screen name="Home" component={Home} />
+    <Stack.Screen name="HomeDetailScreen" component={HomeDetailScreen} />
   </Stack.Navigator>
 );
 
 const MessageStack = () => (
-  <Stack.Navigator initialRouteName="Message">
+  <Stack.Navigator initialRouteName="Message"
+    screenOptions={screenOptionStyle}
+  >
     <Stack.Screen name="Message" component={Message} />
   </Stack.Navigator>
 );
 
 const UploadStack = () => (
-  <Stack.Navigator initialRouteName="Upload">
+  <Stack.Navigator initialRouteName="Upload"
+    screenOptions={screenOptionStyle}
+  >
     <Stack.Screen name="Upload" component={Upload} />
     <Stack.Screen name="EditTraitScreen" component={EditTraitScreen} />
     <Stack.Screen
@@ -43,24 +51,15 @@ const UploadStack = () => (
 );
 
 const FavoriteStack = () => (
-  <Stack.Navigator initialRouteName="Favorite">
+  <Stack.Navigator initialRouteName="Favorite"
+    screenOptions={screenOptionStyle}
+  >
     <Stack.Screen name="Favorite" component={Favorite} />
   </Stack.Navigator>
 );
 
 const VolunteerStack = () => {
-  const screenOptionStyle = {
-    headerStyle: {
-      backgroundColor: "#F1E3CD",
-    },
-    headerTitleStyle: {
-      fontFamily: "galada",
-      fontSize: 30,
-    },
-    headerTintColor: "#5C5341",
-    headerBackTitle: "Back",
-  };
-
+  
   return (
     <Stack.Navigator
       initialRouteName="Volunteer"
@@ -90,5 +89,18 @@ const routes = () => (
     </NavigationContainer>
   </SessionProvider>
 );
+
+const screenOptionStyle = {
+  headerStyle: {
+    backgroundColor: "#F1E3CD",
+  },
+  headerTitleStyle: {
+    fontFamily: "galada",
+    fontSize: 30,
+    alignSelf: 'center',
+  },
+  headerTintColor: "#5C5341",
+  headerBackTitle: "Back",
+};
 
 export default routes;
