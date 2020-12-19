@@ -4,7 +4,6 @@ import {
   StyleSheet,
   TouchableOpacity,
   View,
-  Image,
   ScrollView,
 } from "react-native";
 import RNPickerSelect from "react-native-picker-select";

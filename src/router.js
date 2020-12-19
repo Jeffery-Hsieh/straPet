@@ -6,13 +6,16 @@ import { SessionProvider } from "./store/context";
 
 // Tabs
 import TabBar from "./components/TabBar";
-import Home from "./screens/HomeScreen";
 import Message from "./screens/MessageScreen";
 import Upload from "./screens/UploadScreen";
 import Favorite from "./screens/FavoriteScreen";
 import VolunteerList from "./screens/VolunteerListScreen";
 import VolunteerDetail from "./screens/VolunteerDetailScreen";
-import HomeDetailScreen from "./screens/HomeDetailScreen";
+
+import Discover from "./screens/DiscoverScreen";
+import DiscoverDetailScreen from "./screens/DiscoverDetailScreen";
+import DiscoverFilterScreen from "./screens/DiscoverFilterScreen";
+
 import ChatScreen from "./screens/ChatScreen";
 import EditTraitScreen from "./screens/EditTraitScreen";
 import UploadCompleteScreen from "./screens/UploadCompleteScreen";
@@ -20,27 +23,31 @@ import UploadCompleteScreen from "./screens/UploadCompleteScreen";
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
-const HomeStack = () => (
-  <Stack.Navigator initialRouteName="Home"
+const DiscoverStack = () => (
+  <Stack.Navigator
+    initialRouteName="Discover"
     screenOptions={screenOptionStyle}
   >
-    <Stack.Screen name="Home" component={Home} />
-    <Stack.Screen name="HomeDetailScreen" component={HomeDetailScreen} />
+    <Stack.Screen name="Discover" component={Discover} />
+    <Stack.Screen
+      name="DiscoverDetailScreen"
+      component={DiscoverDetailScreen}
+    />
+    <Stack.Screen
+      name="DiscoverFilterScreen"
+      component={DiscoverFilterScreen}
+    />
   </Stack.Navigator>
 );
 
 const MessageStack = () => (
-  <Stack.Navigator initialRouteName="Message"
-    screenOptions={screenOptionStyle}
-  >
+  <Stack.Navigator initialRouteName="Message" screenOptions={screenOptionStyle}>
     <Stack.Screen name="Message" component={Message} />
   </Stack.Navigator>
 );
 
 const UploadStack = () => (
-  <Stack.Navigator initialRouteName="Upload"
-    screenOptions={screenOptionStyle}
-  >
+  <Stack.Navigator initialRouteName="Upload" screenOptions={screenOptionStyle}>
     <Stack.Screen name="Upload" component={Upload} />
     <Stack.Screen name="EditTraitScreen" component={EditTraitScreen} />
     <Stack.Screen
@@ -51,7 +58,8 @@ const UploadStack = () => (
 );
 
 const FavoriteStack = () => (
-  <Stack.Navigator initialRouteName="Favorite"
+  <Stack.Navigator
+    initialRouteName="Favorite"
     screenOptions={screenOptionStyle}
   >
     <Stack.Screen name="Favorite" component={Favorite} />
@@ -59,7 +67,6 @@ const FavoriteStack = () => (
 );
 
 const VolunteerStack = () => {
-  
   return (
     <Stack.Navigator
       initialRouteName="Volunteer"
@@ -74,7 +81,7 @@ const VolunteerStack = () => {
 
 const BottomTabNavigator = () => (
   <Tab.Navigator tabBar={(props) => <TabBar {...props} />}>
-    <Tab.Screen name="Home" component={HomeStack} />
+    <Tab.Screen name="Discover" component={DiscoverStack} />
     <Tab.Screen name="Message" component={MessageStack} />
     <Tab.Screen name="Upload" component={UploadStack} />
     <Tab.Screen name="Favorite" component={FavoriteStack} />
@@ -97,7 +104,7 @@ const screenOptionStyle = {
   headerTitleStyle: {
     fontFamily: "galada",
     fontSize: 30,
-    alignSelf: 'center',
+    alignSelf: "center",
   },
   headerTintColor: "#5C5341",
   headerBackTitle: "Back",
