@@ -1,5 +1,5 @@
 import React from "react";
-// import PropTypes from "prop-types";
+
 import {
   BottomNavigation,
   BottomNavigationTab,
@@ -7,24 +7,13 @@ import {
   Icon,
 } from "@ui-kitten/components";
 
-// import { View, Text } from "react-native";
-// import i18n from "../i18n";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const HomeIcon = (style) => <Icon {...style} name="home" />;
 const MessageIcon = (style) => <Icon {...style} name="message-square" />;
 const UploadIcon = (style) => <Icon {...style} name="upload" />;
 const FavoriteIcon = (style) => <Icon {...style} name="heart" />;
 const VolunteerIcon = (style) => <Icon {...style} name="people" />;
-
-// const propTypes = {
-//   eva: PropTypes.shape({
-//     style: PropTypes.object,
-//   }).isRequired,
-//   state: PropTypes.object.isRequired,
-//   navigation: PropTypes.shape({
-//     navigate: PropTypes.func.isRequired,
-//   }).isRequired,
-// };
 
 const TabBarComponent = ({ eva, navigation, state }) => {
   const changeTab = (index) => {
@@ -49,8 +38,6 @@ const TabBarComponent = ({ eva, navigation, state }) => {
     </BottomNavigation>
   );
 };
-
-// TabBarComponent.propTypes = propTypes;
 
 export default withStyles(TabBarComponent, (theme) => ({
   tabBar: {
