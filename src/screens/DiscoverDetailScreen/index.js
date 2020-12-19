@@ -31,7 +31,7 @@ const DiscoverDetailScreen = ({ navigation, route }) => {
   ];
 
   const renderItem = ({ item }) => (
-    <View style={styles.imageContiner}>
+    <View style={styles.imageView}>
       <Image style={styles.image} source={item} />
     </View>
   );
@@ -56,7 +56,7 @@ const DiscoverDetailScreen = ({ navigation, route }) => {
           <Text style={styles.contactText}>Contact</Text>
         </TouchableOpacity>
       </View>
-      <View style={styles.ImageContainer}>
+      <View style={styles.imageContainer}>
         <FlatList
           horizontal={true}
           data={image}
@@ -116,10 +116,18 @@ const styles = StyleSheet.create({
     padding: 8,
     color: "#fff",
   },
-  ImageContainer: {
-    width: "100%",
-    height: 200,
+  imageContainer: {
+    height: 300,
     marginBottom: 16,
+  },
+  imageView: {
+    width: windowWidth,
+    marginRight: 10,
+  },
+  image: {
+    width: "100%",
+    height: undefined,
+    aspectRatio: 3 / 2,
   },
   saveContainer: {
     flexDirection: "row",
