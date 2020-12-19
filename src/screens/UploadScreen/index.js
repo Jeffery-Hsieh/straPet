@@ -1,10 +1,11 @@
-import React, { useState, useLayoutEffect } from "react";
+import React, { useState, useLayoutEffect, useEffect } from "react";
 import {
   TextInput,
   StyleSheet,
   TouchableOpacity,
   View,
   ScrollView,
+  Platform,
 } from "react-native";
 import RNPickerSelect from "react-native-picker-select";
 import {
@@ -14,6 +15,8 @@ import {
   IconButton,
   Colors,
 } from "react-native-paper";
+import * as ImagePicker from 'expo-image-picker';
+import Constants from 'expo-constants';
 
 import RadarChart from "../../components/RadarChart";
 
@@ -48,6 +51,7 @@ const UploadScreen = ({ navigation }) => {
   const [city, setCity] = useState("");
   const [description, setDescription] = useState("");
   const [traits, setTraits] = useState(initTraits);
+  const [image, setImage] = useState(null);
 
   const data = Object.keys(traits).map((key) => initTraits[key]);
 
@@ -77,19 +81,44 @@ const UploadScreen = ({ navigation }) => {
     });
   }, [navigation, setDescription]);
 
+  useEffect(() => {
+    (async () => {
+      if (Platform.OS !== 'web') {
+        const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+        if (status !== 'granted') {
+          alert('Sorry, we need camera roll permissions to make this work!');
+        }
+      }
+    })();
+  }, []);
+
+  const pickImage = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    if (!result.cancelled) {
+      setImage(result.uri);
+    }
+  };
+
   return (
     <ScrollView style={styles.container}>
       <View style={styles.row}>
         <TouchableOpacity>
           <Avatar.Image
             size={120}
-            source={require("../../assets/images/animals/0_0.jpg")}
+            source={{ uri: image }}
           />
           <IconButton
             style={styles.camera}
             icon="camera"
             size={30}
             color={Colors.black}
+            onPress={pickImage}
           />
         </TouchableOpacity>
         <TouchableOpacity style={styles.radarChart} onPress={editRadarChart}>
