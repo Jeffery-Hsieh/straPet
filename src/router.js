@@ -23,6 +23,19 @@ import UploadCompleteScreen from "./screens/UploadCompleteScreen";
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
+const screenOptionStyle = {
+  headerStyle: {
+    backgroundColor: "#F1E3CD",
+  },
+  headerTitleStyle: {
+    fontFamily: "Galada_400Regular",
+    fontSize: 30,
+    alignSelf: "center",
+  },
+  headerTintColor: "#5C5341",
+  headerBackTitle: "Back",
+};
+
 const DiscoverStack = () => (
   <Stack.Navigator
     initialRouteName="Discover"
@@ -96,18 +109,5 @@ const routes = () => (
     </NavigationContainer>
   </SessionProvider>
 );
-
-const screenOptionStyle = {
-  headerStyle: {
-    backgroundColor: "#F1E3CD",
-  },
-  headerTitleStyle: {
-    fontFamily: "galada",
-    fontSize: 30,
-    alignSelf: "center",
-  },
-  headerTintColor: "#5C5341",
-  headerBackTitle: "Back",
-};
 
 export default routes;

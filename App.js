@@ -4,17 +4,19 @@ import { ApplicationProvider, IconRegistry } from "@ui-kitten/components";
 import { EvaIconsPack } from "@ui-kitten/eva-icons";
 import * as eva from "@eva-design/eva";
 import Router from "./src/router";
-import * as Font from "expo-font";
+import { useFonts, Galada_400Regular } from "@expo-google-fonts/galada";
+import AppLoading from "expo-app-loading";
 
 import { theme } from "./src/theme";
 
 export default function App() {
-  useEffect(() => {
-    async function getFont() {
-      await Font.loadAsync({ galada: require("./assets/Galada-Regular.ttf") });
-    }
-    getFont();
-  }, []);
+  let [fontsLoaded] = useFonts({
+    Galada_400Regular,
+  });
+
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }
 
   return (
     <Fragment>

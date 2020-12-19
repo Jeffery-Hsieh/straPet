@@ -13,7 +13,6 @@ import _ from "lodash";
 
 const Discover = ({ navigation, route }) => {
   const [{ animals }] = useContext(SessionContext);
-  console.log(route.params);
   const filters = route.params ? route.params.filters : null;
 
   const randNumDisplay = Math.ceil(Math.random() * animals.length);
