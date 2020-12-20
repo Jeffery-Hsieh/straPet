@@ -6,6 +6,7 @@ import {
   View,
   ScrollView,
   ActionSheetIOS,
+  Alert
 } from "react-native";
 import RNPickerSelect from "react-native-picker-select";
 import {
@@ -16,6 +17,7 @@ import {
   Colors,
 } from "react-native-paper";
 import useGetImagePicker from "../../hooks/useGetImagePicker";
+import CameraModule from "../../components/Camera";
 
 import RadarChart from "../../components/RadarChart";
 
@@ -51,8 +53,10 @@ const UploadScreen = ({ navigation }) => {
   const [description, setDescription] = useState("");
   const [traits, setTraits] = useState(initTraits);
   const [{ image }, onPickImage] = useGetImagePicker(null);
-  // const [image, setImage] = useState(null);
-
+  const [cameraImage, setCameraImage] = useState(null);
+  const [camera, setShowCamera] = useState(false);
+  const [hasPermission, setHasPermission] = useState(null);
+  
   const data = Object.keys(traits).map((key) => initTraits[key]);
 
   const genderRadioBtns = genders.map((g) => (
@@ -83,19 +87,38 @@ const UploadScreen = ({ navigation }) => {
 
   const ImageButtonOnPress = () => ActionSheetIOS.showActionSheetWithOptions({
       options: ['Cancel', 'Camera', 'Album'],
-      // destructiveButtonIndex: 2,
       cancelButtonIndex: 0,
     },
     buttonIndex => {
       if (buttonIndex === 0) {
         // cancel action
       } else if (buttonIndex === 1) {
-        console.log("!@#!")
+        if (hasPermission === null || hasPermission === false) {
+          Alert.alert(
+            "Message",
+            "Camera Permission fail",
+            [
+              { text: "OK", onPress: () => console.log("OK Pressed") }
+            ],
+            { cancelable: false }
+          );
+        }
+        else {
+          setShowCamera(true);
+        }
+          
       } else if (buttonIndex === 2) {
         onPickImage();
       }
     }
   );
+
+  useEffect(() => {
+    (async () => {
+      const { status } = await Camera.requestPermissionsAsync();
+      setHasPermission(status === "granted");
+    })();
+  }, []);
 
   return (
     <ScrollView style={styles.container}>
@@ -112,7 +135,13 @@ const UploadScreen = ({ navigation }) => {
             color={Colors.black}
             onPress={ImageButtonOnPress}
           />
-          
+          {/* {camera && (
+            <CameraModule
+              showModal={camera}
+              setModalVisible={() => setShowCamera(false)}
+              setImage={(result) => setCameraImage(result.uri)}
+            />
+          )} */}
         </TouchableOpacity>
         <TouchableOpacity style={styles.radarChart} onPress={editRadarChart}>
           <RadarChart data={data} />
@@ -239,3 +268,4 @@ const pickerSelectStyles = StyleSheet.create({
 });
 
 export default UploadScreen;
+      
