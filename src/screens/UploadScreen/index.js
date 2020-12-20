@@ -32,21 +32,24 @@ const breeds = [
   { label: "Corgi Triever", value: "corgi triever" },
 ];
 
-const initTraits = {
+let initTraits = {
   extraverted: 0,
-  friendly: 50,
-  energetic: 40,
-  selfControl: 50,
+  friendly: 0,
+  energetic: 0,
+  selfControl: 0,
   size: 0,
   appetite: 0,
 };
 
-const UploadScreen = ({ navigation }) => {
+const UploadScreen = ({ navigation, route }) => {
   const [gender, setGender] = useState("Unknown");
   const [breed, setBreed] = useState("");
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
   const [description, setDescription] = useState("");
+
+  initTraits = route.params ? route.params.traits : initTraits;
+
   const [traits, setTraits] = useState(initTraits);
 
   const data = Object.keys(traits).map((key) => initTraits[key]);
@@ -63,7 +66,7 @@ const UploadScreen = ({ navigation }) => {
   ));
 
   const editRadarChart = () => {
-    navigation.push("EditTraitScreen");
+    navigation.push("Edit Trait");
   };
 
   useLayoutEffect(() => {
@@ -71,7 +74,7 @@ const UploadScreen = ({ navigation }) => {
       headerRight: () => (
         <IconButton
           icon="check"
-          onPress={() => navigation.navigate("UploadCompleteScreen")}
+          onPress={() => navigation.navigate("Upload Complete")}
         />
       ),
     });

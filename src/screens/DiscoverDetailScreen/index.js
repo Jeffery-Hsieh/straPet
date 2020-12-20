@@ -30,6 +30,10 @@ const DiscoverDetailScreen = ({ navigation, route }) => {
     animalId
   ];
 
+  const randTraits = Array.from({ length: 6 }).map(() =>
+    Math.ceil(Math.random() * 100)
+  );
+
   const renderItem = ({ item }) => (
     <View style={styles.imageView}>
       <Image style={styles.image} source={item} />
@@ -86,7 +90,7 @@ const DiscoverDetailScreen = ({ navigation, route }) => {
         </Text>
       </View>
       <View style={styles.radarChartContainer}>
-        <RadarChart data={[20, 20, 40, 50, 20, 30]} />
+        <RadarChart data={randTraits} />
       </View>
     </View>
   );

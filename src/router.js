@@ -17,7 +17,7 @@ import DiscoverDetailScreen from "./screens/DiscoverDetailScreen";
 import DiscoverFilterScreen from "./screens/DiscoverFilterScreen";
 
 import ChatScreen from "./screens/ChatScreen";
-import EditTraitScreen from "./screens/EditTraitScreen";
+import UploadEditTraitScreen from "./screens/UploadEditTraitScreen";
 import UploadCompleteScreen from "./screens/UploadCompleteScreen";
 
 const Tab = createBottomTabNavigator();
@@ -62,11 +62,8 @@ const MessageStack = () => (
 const UploadStack = () => (
   <Stack.Navigator initialRouteName="Upload" screenOptions={screenOptionStyle}>
     <Stack.Screen name="Upload" component={Upload} />
-    <Stack.Screen name="EditTraitScreen" component={EditTraitScreen} />
-    <Stack.Screen
-      name="UploadCompleteScreen"
-      component={UploadCompleteScreen}
-    />
+    <Stack.Screen name="Edit Trait" component={UploadEditTraitScreen} />
+    <Stack.Screen name="Upload Complete" component={UploadCompleteScreen} />
   </Stack.Navigator>
 );
 

@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useLayoutEffect } from "react";
 import RadarChart from "../../components/RadarChart";
 import { View, StyleSheet } from "react-native";
 import RadarChartSlider from "../../components/RadarChartSlider";
+import { IconButton } from "react-native-paper";
 
 const traitsLabels = {
   extraverted: "Extraverted",
@@ -12,7 +13,7 @@ const traitsLabels = {
   appetite: "Appetite",
 };
 
-const EditTraitScreen = () => {
+const EditTraitScreen = ({ navigation }) => {
   const initTraits = {
     extraverted: 0,
     friendly: 0,
@@ -23,6 +24,17 @@ const EditTraitScreen = () => {
   };
   const [traits, setTraits] = useState(initTraits);
   const data = Object.keys(traits).map((key) => traits[key]);
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <IconButton
+          icon="check"
+          onPress={() => navigation.navigate("Upload", { traits: traits })}
+        />
+      ),
+    });
+  }, [navigation, traits]);
 
   const handleSliderChange = (newValue) => {
     setTraits({

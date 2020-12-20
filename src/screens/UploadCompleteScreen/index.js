@@ -29,7 +29,7 @@ const UploadCompleteScreen = () => {
         </View>
         <View style={styles.contact}>
           <IconButton icon="mail" />
-          <Text>a123@gamil.com</Text>
+          <Text>a123@gmail.com</Text>
         </View>
       </View>
     </View>
