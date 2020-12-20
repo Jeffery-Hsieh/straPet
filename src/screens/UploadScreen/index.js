@@ -5,7 +5,7 @@ import {
   TouchableOpacity,
   View,
   ScrollView,
-  Platform,
+  ActionSheetIOS,
 } from "react-native";
 import RNPickerSelect from "react-native-picker-select";
 import {
@@ -15,8 +15,7 @@ import {
   IconButton,
   Colors,
 } from "react-native-paper";
-import * as ImagePicker from 'expo-image-picker';
-import Constants from 'expo-constants';
+import useGetImagePicker from "../../hooks/useGetImagePicker";
 
 import RadarChart from "../../components/RadarChart";
 
@@ -51,7 +50,8 @@ const UploadScreen = ({ navigation }) => {
   const [city, setCity] = useState("");
   const [description, setDescription] = useState("");
   const [traits, setTraits] = useState(initTraits);
-  const [image, setImage] = useState(null);
+  const [{ image }, onPickImage] = useGetImagePicker(null);
+  // const [image, setImage] = useState(null);
 
   const data = Object.keys(traits).map((key) => initTraits[key]);
 
@@ -81,29 +81,21 @@ const UploadScreen = ({ navigation }) => {
     });
   }, [navigation, setDescription]);
 
-  useEffect(() => {
-    (async () => {
-      if (Platform.OS !== 'web') {
-        const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
-        if (status !== 'granted') {
-          alert('Sorry, we need camera roll permissions to make this work!');
-        }
+  const ImageButtonOnPress = () => ActionSheetIOS.showActionSheetWithOptions({
+      options: ['Cancel', 'Camera', 'Album'],
+      // destructiveButtonIndex: 2,
+      cancelButtonIndex: 0,
+    },
+    buttonIndex => {
+      if (buttonIndex === 0) {
+        // cancel action
+      } else if (buttonIndex === 1) {
+        console.log("!@#!")
+      } else if (buttonIndex === 2) {
+        onPickImage();
       }
-    })();
-  }, []);
-
-  const pickImage = async () => {
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
-      allowsEditing: true,
-      aspect: [4, 3],
-      quality: 1,
-    });
-
-    if (!result.cancelled) {
-      setImage(result.uri);
     }
-  };
+  );
 
   return (
     <ScrollView style={styles.container}>
@@ -118,8 +110,9 @@ const UploadScreen = ({ navigation }) => {
             icon="camera"
             size={30}
             color={Colors.black}
-            onPress={pickImage}
+            onPress={ImageButtonOnPress}
           />
+          
         </TouchableOpacity>
         <TouchableOpacity style={styles.radarChart} onPress={editRadarChart}>
           <RadarChart data={data} />
