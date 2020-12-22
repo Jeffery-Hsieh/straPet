@@ -31,6 +31,9 @@ const ChatScreen = ({ route }) => {
         text: text,
         sender: userId,
       });
+    firebase.firestore().collection("messages").doc(groupId).set({
+      previewMsg: text,
+    });
   };
 
   // Send icon

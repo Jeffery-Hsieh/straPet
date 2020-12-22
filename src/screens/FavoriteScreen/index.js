@@ -1,6 +1,7 @@
 import React, { Fragment, useContext } from "react";
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import SessionContext from "../../store/context";
+import { IconButton, Colors } from "react-native-paper";
 
 const VolunteerScreen = () => {
   const [session] = useContext(SessionContext);
@@ -10,9 +11,14 @@ const VolunteerScreen = () => {
       <View key={id} style={styles.content}>
         <Image style={styles.imageStyle} source={image} />
         <View style={{ flex: 1, flextDirection: "column" }}>
-          <Text style={styles.information}>Place: {shelter}</Text>
-          <Text style={styles.information}>Breed: {breed}</Text>
-          <Text style={styles.information}>Gender: {gender}</Text>
+          <Text style={styles.information}>{shelter}</Text>
+          <View style={styles.informationContainer}>
+            <Text style={styles.information}>{breed}</Text>
+            <IconButton
+              icon={gender == "Female" ? "gender-male" : "gender-female"}
+              color={gender == "Female" ? Colors.blue500 : Colors.red500}
+            />
+          </View>
         </View>
       </View>
     )
@@ -31,6 +37,10 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     flexDirection: "row",
     margin: 15,
+  },
+  informationContainer: {
+    flexDirection: "row",
+    alignItems: "center",
   },
   information: {
     fontSize: 17,

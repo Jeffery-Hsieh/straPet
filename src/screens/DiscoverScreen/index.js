@@ -29,6 +29,12 @@ const Discover = ({ navigation, route }) => {
           onPress={() => navigation.navigate("DiscoverFilterScreen")}
         />
       ),
+      headerLeft: () => (
+        <IconButton
+          icon="account"
+          onPress={() => navigation.navigate("Profile")}
+        />
+      ),
     });
   }, [navigation]);
 
@@ -62,6 +68,9 @@ const Discover = ({ navigation, route }) => {
 
   return (
     <SafeAreaView style={styles.container}>
+      {filters ? (
+        <Text style={styles.matchNumber}>{randNumDisplay} animals matched</Text>
+      ) : null}
       <FlatList
         contentContainerStyle={styles.gridContainer}
         data={animalsFiltered}
@@ -75,6 +84,11 @@ const Discover = ({ navigation, route }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  matchNumber: {
+    height: 20,
+    marginLeft: 20,
+    marginTop: 20,
   },
   gridContainer: {
     paddingTop: 10,

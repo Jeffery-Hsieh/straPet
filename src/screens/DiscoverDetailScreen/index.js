@@ -1,12 +1,9 @@
 import React, { useState, useContext } from "react";
 import {
-  SafeAreaView,
   View,
   Text,
   StyleSheet,
   Image,
-  StatusBar,
-  Button,
   TouchableOpacity,
   Dimensions,
   FlatList,
@@ -45,7 +42,7 @@ const DiscoverDetailScreen = ({ navigation, route }) => {
       <View style={styles.shelterContainer}>
         <Avatar.Image
           size={40}
-          source={require("../../assets/images/taipei_city_animal_protection_office.png")}
+          source={require("../../assets/images/06p7GZJ3hIqb6Bv8h27j.png")}
         />
         <Text style={styles.shelterText}>{shelter}</Text>
         <TouchableOpacity

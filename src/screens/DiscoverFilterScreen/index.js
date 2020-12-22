@@ -43,7 +43,6 @@ const DiscoverFilterScreen = ({ navigation }) => {
         { label: "10 ~ ", value: 2 },
       ],
     },
-    // age: ["0 ~ 5", "5 ~ 10", "10 ~ 15", "15 ~ 20"],
   ];
 
   const initialSelectState = {

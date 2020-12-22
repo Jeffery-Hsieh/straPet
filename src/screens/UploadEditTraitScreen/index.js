@@ -71,6 +71,7 @@ const styles = StyleSheet.create({
   },
   sliderContainer: {
     flex: 3,
+    paddingHorizontal: 10,
     justifyContent: "space-around",
     alignItems: "center",
   },

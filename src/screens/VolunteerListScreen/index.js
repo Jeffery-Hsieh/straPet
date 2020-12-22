@@ -9,7 +9,7 @@ const VolunteerScreen = ({ navigation }) => {
   const onChangeSearch = (query) => setSearchQuery(query);
 
   const moveToInfoScreen = (id) => {
-    navigation.push("VolunteerDetail", { volunteerId: id });
+    navigation.push("Volunteer Shelter", { volunteerId: id });
   };
 
   const shelters = session.volunteers

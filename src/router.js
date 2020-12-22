@@ -6,9 +6,11 @@ import { SessionProvider } from "./store/context";
 
 // Tabs
 import TabBar from "./components/TabBar";
+import Profile from "./screens/ProfileScreen";
 import Message from "./screens/MessageScreen";
 import Upload from "./screens/UploadScreen";
 import Favorite from "./screens/FavoriteScreen";
+
 import VolunteerList from "./screens/VolunteerListScreen";
 import VolunteerDetail from "./screens/VolunteerDetailScreen";
 
@@ -42,9 +44,13 @@ const DiscoverStack = () => (
     screenOptions={screenOptionStyle}
   >
     <Stack.Screen name="Discover" component={Discover} />
+    <Stack.Screen name="Profile" component={Profile} />
     <Stack.Screen
       name="DiscoverDetailScreen"
       component={DiscoverDetailScreen}
+      options={{
+        title: "Discover",
+      }}
     />
     <Stack.Screen
       name="DiscoverFilterScreen"
@@ -56,6 +62,7 @@ const DiscoverStack = () => (
 const MessageStack = () => (
   <Stack.Navigator initialRouteName="Message" screenOptions={screenOptionStyle}>
     <Stack.Screen name="Message" component={Message} />
+    <Stack.Screen name="Chat" component={ChatScreen} />
   </Stack.Navigator>
 );
 
@@ -83,8 +90,7 @@ const VolunteerStack = () => {
       screenOptions={screenOptionStyle}
     >
       <Stack.Screen name="Volunteer" component={VolunteerList} />
-      <Stack.Screen name="VolunteerDetail" component={VolunteerDetail} />
-      <Stack.Screen name="Chat" component={ChatScreen} />
+      <Stack.Screen name="Volunteer Shelter" component={VolunteerDetail} />
     </Stack.Navigator>
   );
 };
