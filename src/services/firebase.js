@@ -1,17 +1,32 @@
 import * as firebase from "firebase";
 import "firebase/firestore";
+import {
+  FIREBASE_APIKEY,
+  FIREBASE_AUTHDOMAIN,
+  FIREBASE_DATABASEURL,
+  FIREBASE_PROJECTID,
+  FIREBASE_STORAGEBUCKET,
+  FIREBASE_MESSAGINGSENDERID,
+  FIREBASE_APPID,
+  FIREBASE_MEASUREMENTID,
+} from "@env";
 
 const config = {
-  apiKey: process.env.FIREBASE_APIKEY,
-  authDomain: process.env.FIREBASE_AUTHDOMAIN,
-  databaseURL: process.env.FIREBASE_DATABASEURL,
-  projectId: process.env.FIREBASE_PROJECTID,
-  storageBucket: process.env.FIREBASE_STORAGEBUCKET,
-  messagingSenderId: process.env.FIREBASE_MESSAGINGSENDERID,
-  appId: process.env.FIREBASE_APPID,
-  measurementId: process.env.FIREBASE_MEASUREMENTID,
+  apiKey: FIREBASE_APIKEY,
+  authDomain: FIREBASE_AUTHDOMAIN,
+  databaseURL: FIREBASE_DATABASEURL,
+  projectId: FIREBASE_PROJECTID,
+  storageBucket: FIREBASE_STORAGEBUCKET,
+  messagingSenderId: FIREBASE_MESSAGINGSENDERID,
+  appId: FIREBASE_APPID,
+  measurementId: FIREBASE_MEASUREMENTID,
 };
 
 firebase.initializeApp(config);
+firebase
+  .auth()
+  .signInAnonymously()
+  .then(console.log("Sign in success"))
+  .catch((e) => console.log(e));
 
 export default firebase;

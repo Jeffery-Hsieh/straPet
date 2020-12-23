@@ -62,15 +62,19 @@ const DiscoverStack = () => (
 const MessageStack = () => (
   <Stack.Navigator initialRouteName="Message" screenOptions={screenOptionStyle}>
     <Stack.Screen name="Message" component={Message} />
-    <Stack.Screen name="Chat" component={ChatScreen} />
+    <Stack.Screen
+      name="MessageChatRoom"
+      component={ChatScreen}
+      options={{ title: "Chat" }}
+    />
   </Stack.Navigator>
 );
 
 const UploadStack = () => (
   <Stack.Navigator initialRouteName="Upload" screenOptions={screenOptionStyle}>
     <Stack.Screen name="Upload" component={Upload} />
-    <Stack.Screen name="Edit Trait" component={UploadEditTraitScreen} />
-    <Stack.Screen name="Upload Complete" component={UploadCompleteScreen} />
+    <Stack.Screen name="EditTrait" component={UploadEditTraitScreen} />
+    <Stack.Screen name="UploadComplete" component={UploadCompleteScreen} />
   </Stack.Navigator>
 );
 
@@ -90,7 +94,16 @@ const VolunteerStack = () => {
       screenOptions={screenOptionStyle}
     >
       <Stack.Screen name="Volunteer" component={VolunteerList} />
-      <Stack.Screen name="Volunteer Shelter" component={VolunteerDetail} />
+      <Stack.Screen
+        name="VolunteerShelter"
+        component={VolunteerDetail}
+        options={{ title: "Shelter Info" }}
+      />
+      <Stack.Screen
+        name="VolunteerChatRoom"
+        component={ChatScreen}
+        options={{ title: "Chat" }}
+      />
     </Stack.Navigator>
   );
 };

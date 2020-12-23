@@ -13,10 +13,7 @@ const VolunteerDetailScreen = ({ navigation, route, eva }) => {
   const { shelterName, image, address, city } = session.volunteers[volunteerId];
 
   const moveToChatScreen = () => {
-    navigation.navigate("Message", {
-      screen: "Chat",
-      params: { groupId: groupId },
-    });
+    navigation.navigate("VolunteerChatRoom", { groupId: groupId });
   };
 
   return (

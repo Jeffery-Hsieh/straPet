@@ -23,7 +23,9 @@ const MessageScreen = ({ navigation }) => {
     <TouchableOpacity
       key={groupId}
       style={styles.content}
-      onPress={() => navigation.navigate("Chat", { groupId: groupId })}
+      onPress={() =>
+        navigation.navigate("MessageChatRoom", { groupId: groupId })
+      }
     >
       <Avatar.Image size={70} source={image[name]} />
       <View style={styles.textContainer}>
