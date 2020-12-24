@@ -116,8 +116,8 @@ shellAppWorkspaces
 /client-builds
 
 # Expo web env
-.env.local
-.env.development.local
+.env
+.env.development
 .env.test.local
 .env.production.local
 apps/bare-expo/deploy-url.txt
