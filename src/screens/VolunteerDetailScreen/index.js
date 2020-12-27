@@ -1,6 +1,7 @@
 import React, { Fragment, useContext } from "react";
 import { withStyles } from "@ui-kitten/components";
 import { View, Image, Text, TouchableOpacity } from "react-native";
+import MapView, { Marker } from 'react-native-maps';
 import SessionContext from "../../store/context";
 import styles from "./VolunteerDetail.style";
 
@@ -26,6 +27,19 @@ const VolunteerDetailScreen = ({ navigation, route, eva }) => {
         <Text style={eva.style.text}>{address}</Text>
         <Text style={eva.style.text}>{city}</Text>
       </View>
+      <MapView
+        style={eva.style.map}
+        initialRegion={{
+          latitude: 24.9953541,
+          longitude: 121.4479827,
+          latitudeDelta: 0.0072,
+          longitudeDelta: 0.0071,
+        }}
+      >
+        <Marker
+          coordinate={{ latitude : 24.9953541 , longitude : 121.4479827 }}
+        />
+      </MapView>
       <TouchableOpacity style={eva.style.followBtn}>
         <Text style={eva.style.followText}>FOLLOW</Text>
       </TouchableOpacity>

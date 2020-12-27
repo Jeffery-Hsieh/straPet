@@ -1,3 +1,5 @@
+import { Dimensions } from "react-native";
+
 const styles = (theme) => ({
   container: {
     flex: 1,
@@ -6,9 +8,9 @@ const styles = (theme) => ({
     textAlign: "center",
   },
   avatar: {
-    flex: 1,
-    marginTop: 70,
-    marginBottom: 100,
+    flex: 1.5,
+    marginTop: 20,
+    marginBottom: 30,
     alignItems: "center",
   },
   avatarImage: {
@@ -17,7 +19,7 @@ const styles = (theme) => ({
     borderRadius: 200 / 2,
   },
   info: {
-    flex: 2,
+    flex: 1,
     alignItems: "center",
   },
   title: {
@@ -26,7 +28,7 @@ const styles = (theme) => ({
     textAlign: "center",
     color: "#000",
     fontSize: 25,
-    marginBottom: 50,
+    marginBottom: 20,
   },
   text: {
     color: "grey",
@@ -51,6 +53,12 @@ const styles = (theme) => ({
     borderWidth: 4,
     borderColor: "#000",
     borderRadius: 5,
+  },
+  map: {
+    flex: 1.5,
+    width: "100%",
+    // height: 250,
+    marginBottom: 20,
   },
 });
 
