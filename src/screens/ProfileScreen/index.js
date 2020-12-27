@@ -1,6 +1,6 @@
 import React, { useState, useContext, useLayoutEffect } from "react";
 import SessionContext from "../../store/context";
-import { View, Text, StyleSheet, TextInput } from "react-native";
+import { View, Text, StyleSheet, Switch, TextInput } from "react-native";
 import { Avatar, IconButton } from "react-native-paper";
 
 const ProfileScreen = ({ navigation }) => {
@@ -29,16 +29,16 @@ const ProfileScreen = ({ navigation }) => {
     setUserIndex(newUserIndex);
   };
 
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerRight: () => (
-        <IconButton
-          icon={userIndex == 0 ? "face" : "home"}
-          onPress={changeUser}
-        />
-      ),
-    });
-  }, [navigation, userIndex]);
+  // useLayoutEffect(() => {
+  //   navigation.setOptions({
+  //     headerRight: () => (
+  //       <IconButton
+  //         icon={userIndex == 0 ? "face" : "home"}
+  //         onPress={changeUser}
+  //       />
+  //     ),
+  //   });
+  // }, [navigation, userIndex]);
 
   const { name, image } = users[userIndex];
 
@@ -59,6 +59,16 @@ const ProfileScreen = ({ navigation }) => {
         <Text style={styles.label}>Email</Text>
         <Text style={styles.text}>shiba@gmail.com</Text>
       </View>
+      <View style={styles.row}>
+        <Text style={styles.label}>Shelter</Text>
+        <View style={{ width: 200, }}>
+          <Switch
+            onValueChange={changeUser}
+            value={userIndex == 0 ? false : true }
+          />
+        </View>
+      </View>
+      
     </View>
   );
 };
@@ -76,7 +86,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   label: {
-    width: 80,
+    width: 85,
     marginRight: 24,
     fontSize: 24,
     fontWeight: "bold",
