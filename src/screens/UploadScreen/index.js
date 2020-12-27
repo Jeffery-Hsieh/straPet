@@ -74,7 +74,7 @@ const UploadScreen = ({ navigation, route }) => {
   ));
 
   const editRadarChart = () => {
-    navigation.push("Edit Trait");
+    navigation.push("EditTrait");
   };
 
   useLayoutEffect(() => {
@@ -82,7 +82,7 @@ const UploadScreen = ({ navigation, route }) => {
       headerRight: () => (
         <IconButton
           icon="check"
-          onPress={() => navigation.navigate("Upload Complete")}
+          onPress={() => navigation.navigate("UploadComplete")}
         />
       ),
     });

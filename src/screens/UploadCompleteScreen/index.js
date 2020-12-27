@@ -1,9 +1,9 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { IconButton } from "react-native-paper";
 import { Avatar } from "react-native-paper";
 
-const UploadCompleteScreen = () => {
+const UploadCompleteScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.avatar}>
@@ -32,6 +32,14 @@ const UploadCompleteScreen = () => {
           <Text>a123@gmail.com</Text>
         </View>
       </View>
+      <TouchableOpacity
+          // style={styles.contactContainer}
+          onPress={() => 
+            navigation.navigate('Upload')
+          }
+        >
+          <Text style={styles.title}>Keep Uploading</Text>
+        </TouchableOpacity>
     </View>
   );
 };
