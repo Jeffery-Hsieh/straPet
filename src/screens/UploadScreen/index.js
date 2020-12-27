@@ -49,7 +49,7 @@ const UploadScreen = ({ navigation, route }) => {
   const [gender, setGender] = useState("Unknown");
   const [breed, setBreed] = useState("");
   const [address, setAddress] = useState("");
-  const [city, setCity] = useState("");
+  const [city, setCity] = useState("taipei");
   const [description, setDescription] = useState("");
 
   initTraits = route.params ? route.params.traits : initTraits;
