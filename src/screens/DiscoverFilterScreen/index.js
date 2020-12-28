@@ -46,9 +46,9 @@ const selectData = [
     key: "age",
     title: "Age",
     options: [
-      { label: "~ 5", value: "~ 5" },
-      { label: "5 ~ 10", value: "5 ~ 10" },
-      { label: "10 ~ ", value: "10 ~ " },
+      { label: "0~5 yrs", value: "0~5 yrs" },
+      { label: "5~10 yrs", value: "5~10 yrs" },
+      { label: "10~ yrs", value: "10~ yrs" },
     ],
   },
 ];

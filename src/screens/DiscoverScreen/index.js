@@ -18,7 +18,6 @@ const Discover = ({ navigation, route }) => {
     ? animals.filter((animal) => {
         let match = true;
         const { filters } = route.params;
-        console.log(filters);
         Object.keys(filters).forEach((key) => {
           if (filters[key] != "" && filters[key] !== animal[key]) {
             match = false;
