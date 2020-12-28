@@ -45,7 +45,7 @@ export class Tagging extends React.Component {
     return (
       <View style={tagStyles.container}>
         <TagInput
-          placeholder="Tags..."
+          placeholder="Add Tags..."
           updateState={this.updateTagState}
           tags={this.state.tags}
         />
