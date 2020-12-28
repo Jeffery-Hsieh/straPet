@@ -8,7 +8,7 @@ import {
   FlatList,
 } from "react-native";
 import SessionContext from "../../store/context";
-import { Avatar, IconButton } from "react-native-paper";
+import { Avatar, IconButton, Colors } from "react-native-paper";
 import _ from "lodash";
 
 const Discover = ({ navigation, route }) => {
@@ -42,27 +42,48 @@ const Discover = ({ navigation, route }) => {
     navigation.push("DiscoverDetailScreen", { animalId: id });
   };
 
-  const Item = ({ id, image, shelter, animal, breed, tags }) => (
-    <TouchableOpacity style={styles.item} onPress={() => moveToInfoScreen(id)}>
-      <Avatar.Image size={150} source={image[0]} />
-      <View style={styles.contentView}>
-        <Text style={styles.title}>
-          {animal}/{breed}
-        </Text>
-        <Text style={styles.content}>{shelter}</Text>
-        <Text style={styles.content}>{tags}</Text>
-      </View>
-    </TouchableOpacity>
-  );
+  const Item = ({ id, image, city, district, breed, tags, gender }) => {
+    const tagList = tags.map((tag) => (
+      <Text key={tag} style={styles.tag}>
+        {tag}
+      </Text>
+    ));
+
+    return (
+      <TouchableOpacity
+        style={styles.item}
+        onPress={() => moveToInfoScreen(id)}
+      >
+        <Avatar.Image size={150} source={image[0]} style={styles.avatar} />
+        <View style={styles.contentView}>
+          <View style={styles.tagContainer}>{tagList}</View>
+          <View style={styles.subtitle}>
+            {breed != "mixed" ? (
+              <Text style={styles.breed}>{breed}</Text>
+            ) : null}
+            <IconButton
+              style={styles.genderSymbol}
+              icon={`gender-${gender}`}
+              color={gender == "female" ? Colors.red500 : Colors.blue500}
+            />
+          </View>
+          <Text style={styles.text}>{city}</Text>
+          <Text style={styles.text}>{district}</Text>
+        </View>
+      </TouchableOpacity>
+    );
+  };
 
   const renderItem = ({ item }) => (
     <Item
       id={item.id}
       image={item.image}
-      shelter={item.shelter}
       animal={item.animal}
       breed={item.breed}
       tags={item.tags}
+      city={item.city}
+      district={item.district}
+      gender={item.gender}
     />
   );
 
@@ -95,11 +116,15 @@ const styles = StyleSheet.create({
   },
   item: {
     width: "50%",
-    height: 250,
+    height: 280,
     alignItems: "center",
+    marginBottom: 16,
+  },
+  avatar: {
+    marginBottom: 12,
   },
   contentView: {
-    height: 80,
+    flex: 1,
     alignItems: "center",
   },
   title: {
@@ -108,8 +133,26 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   content: {
-    flex: 1,
+    textAlign: "center",
+    maxWidth: 150,
     fontSize: 14,
+    marginBottom: 10,
+  },
+  tagContainer: {
+    flexDirection: "row",
+  },
+  subtitle: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-around",
+  },
+  tag: {
+    fontSize: 12,
+    marginRight: 4,
+    fontWeight: "bold",
+  },
+  text: {
+    flex: 1,
   },
 });
 

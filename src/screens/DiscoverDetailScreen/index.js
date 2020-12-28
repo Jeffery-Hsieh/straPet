@@ -31,6 +31,8 @@ const DiscoverDetailScreen = ({ navigation, route }) => {
     Math.ceil(Math.random() * 100)
   );
 
+  const [traits, setTraits] = useState(randTraits);
+
   const renderItem = ({ item }) => (
     <View style={styles.imageView}>
       <Image style={styles.image} source={item} />
@@ -48,10 +50,7 @@ const DiscoverDetailScreen = ({ navigation, route }) => {
         <TouchableOpacity
           style={styles.contactContainer}
           onPress={() =>
-            navigation.navigate("Volunteer", {
-              screen: "Chat",
-              params: { groupId: "KK4me439pyuuojQMecyd" },
-            })
+            navigation.navigate("Chat", { groupId: "KK4me439pyuuojQMecyd" })
           }
         >
           <Text style={styles.contactText}>Contact</Text>
@@ -87,7 +86,7 @@ const DiscoverDetailScreen = ({ navigation, route }) => {
         </Text>
       </View>
       <View style={styles.radarChartContainer}>
-        <RadarChart data={randTraits} />
+        <RadarChart data={traits} />
       </View>
     </View>
   );

@@ -1,7 +1,16 @@
 import React, { useMemo } from "react";
 import { View } from "react-native";
-import Svg, { Line, Polygon } from "react-native-svg";
+import Svg, { Line, Polygon, Text } from "react-native-svg";
 import _ from "lodash";
+
+const labels = [
+  "Extraverted",
+  "Friendly",
+  "Energetic",
+  "Self Control",
+  "Size",
+  "Appetite",
+];
 
 const svgY = (degrees) => degrees + 180;
 
@@ -39,6 +48,34 @@ export default ({ data }) => {
         width="100%"
         viewBox={`0 0 ${viewBoxSize} ${viewBoxSize}`}
       >
+        {labels.map((label, i) => {
+          const edgePoint = calculateEdgePoint(30 + i * 60, 1);
+          return (
+            <Text
+              stoke="black"
+              x={edgePoint[1]}
+              y={edgePoint[0]}
+              fontSize="20"
+              fill="none"
+              textAnchor="middle"
+            >
+              {label}
+            </Text>
+          );
+        })}
+
+        <Text
+          fill="none"
+          stroke="purple"
+          fontSize="20"
+          fontWeight="bold"
+          x="100"
+          y="20"
+          textAnchor="middle"
+        >
+          STROKED TEXT
+        </Text>
+
         {[40, 70, 100].map((r) => (
           <Polygon
             key={`radarOutline_${r}`}

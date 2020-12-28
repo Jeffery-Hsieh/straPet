@@ -1,5 +1,3 @@
-import { Dimensions } from "react-native";
-
 const styles = (theme) => ({
   container: {
     flex: 1,

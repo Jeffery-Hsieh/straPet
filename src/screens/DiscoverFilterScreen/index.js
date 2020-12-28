@@ -1,54 +1,63 @@
 import React, { useState, useLayoutEffect } from "react";
-import { Text, View, FlatList, StyleSheet } from "react-native";
+import {
+  Text,
+  View,
+  FlatList,
+  StyleSheet,
+  TouchableOpacity,
+} from "react-native";
 import RNPickerSelect from "react-native-picker-select";
 import RadarChartSlider from "../../components/RadarChartSlider";
-import { IconButton } from "react-native-paper";
+import { IconButton, RadioButton } from "react-native-paper";
 import { filter } from "lodash";
 
-const DiscoverFilterScreen = ({ navigation }) => {
-  const selectData = [
-    {
-      key: "gender",
-      title: "Gender",
-      options: [
-        { label: "Female", value: "female" },
-        { label: "Male", value: "male" },
-      ],
-    },
-    {
-      key: "breed",
-      title: "Breed",
-      options: [
-        { label: "Shiba", value: "shiba" },
-        { label: "Labrador", value: "labrador" },
-        { label: "Goldendoodle", value: "goldendoodle" },
-        { label: "Corgi Triever", value: "corgi triever" },
-      ],
-    },
-    {
-      key: "city",
-      title: "City",
-      options: [
-        { label: "Taipei City", value: "taipei" },
-        { label: "New Taipei City", value: "new taipei" },
-        { label: "Tauyuan City", value: "tauyuan" },
-      ],
-    },
-    {
-      key: "age",
-      title: "Age",
-      options: [
-        { label: "~ 5", value: 0 },
-        { label: "5 ~ 10", value: 1 },
-        { label: "10 ~ ", value: 2 },
-      ],
-    },
-  ];
+const genders = ["Male", "Female", "No Preference"];
 
+const selectData = [
+  {
+    key: "species",
+    title: "Species",
+    options: [
+      { label: "Cat", value: "cat" },
+      { label: "Dog", value: "dog" },
+      { label: "Bird", value: "bird" },
+    ],
+  },
+  {
+    key: "breed",
+    title: "Breed",
+    options: [
+      { label: "Shiba", value: "shiba" },
+      { label: "Labrador", value: "labrador" },
+      { label: "Goldendoodle", value: "goldendoodle" },
+      { label: "Corgi Triever", value: "corgi triever" },
+    ],
+  },
+  {
+    key: "city",
+    title: "City",
+    options: [
+      { label: "Taipei City", value: "taipei" },
+      { label: "New Taipei City", value: "new taipei" },
+      { label: "Tauyuan City", value: "tauyuan" },
+    ],
+  },
+  {
+    key: "age",
+    title: "Age",
+    options: [
+      { label: "~ 5", value: 0 },
+      { label: "5 ~ 10", value: 1 },
+      { label: "10 ~ ", value: 2 },
+    ],
+  },
+];
+
+const DiscoverFilterScreen = ({ navigation }) => {
   const initialSelectState = {
-    gender: "",
     breed: "",
     city: "",
+    district: "",
     age: "",
   };
 
@@ -62,6 +71,7 @@ const DiscoverFilterScreen = ({ navigation }) => {
   };
   const [filters, setFilters] = useState(initialSelectState);
   const [traits, setTraits] = useState(initialTraitState);
+  const [gender, setGender] = useState("No Preference");
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -87,9 +97,20 @@ const DiscoverFilterScreen = ({ navigation }) => {
     });
   };
 
+  const genderRadioBtns = genders.map((g) => (
+    <TouchableOpacity
+      key={g}
+      style={radioButtonStyles.container}
+      onPress={() => setGender(g)}
+    >
+      <RadioButton value={g} status={g === gender ? "checked" : "unchecked"} />
+      <Text>{g}</Text>
+    </TouchableOpacity>
+  ));
+
   const renderItem = ({ item }) => (
     <View style={styles.selectContainer}>
-      <Text style={styles.selectTitle}>{item.title}</Text>
+      <Text style={styles.title}>{item.title}</Text>
       <RNPickerSelect
         style={{ ...pickerSelectStyles }}
         onValueChange={(newValue) => changeFilterValue(item.key, newValue)}
@@ -106,7 +127,7 @@ const DiscoverFilterScreen = ({ navigation }) => {
     return (
       <RadarChartSlider
         key={trait}
-        label={trait.toLocaleUpperCase()}
+        label={trait}
         trait={trait}
         traitOnChange={handleSliderChange}
       />
@@ -115,6 +136,10 @@ const DiscoverFilterScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+      <View style={styles.genderView}>
+        <Text style={styles.title}>Gender</Text>
+        <View style={styles.radioBtns}>{genderRadioBtns}</View>
+      </View>
       <View style={styles.selectGrid}>
         <FlatList data={selectData} numColumns={2} renderItem={renderItem} />
       </View>
@@ -126,13 +151,19 @@ const DiscoverFilterScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingLeft: 12,
+    paddingVertical: 12,
+  },
+  radioBtns: {
+    flexDirection: "row",
+    justifyContent: "space-around",
   },
   selectContainer: {
     flex: 1,
-    marginHorizontal: 10,
-    marginVertical: 10,
+    marginRight: 12,
+    marginVertical: 12,
   },
-  selectTitle: {
+  title: {
     marginBottom: 16,
     fontSize: 24,
     color: "#637E40",
@@ -140,6 +171,13 @@ const styles = StyleSheet.create({
   sliderContainer: {
     flex: 1,
     justifyContent: "space-around",
+    alignItems: "center",
+  },
+});
+
+const radioButtonStyles = StyleSheet.create({
+  container: {
+    flexDirection: "row",
     alignItems: "center",
   },
 });

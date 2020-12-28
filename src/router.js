@@ -56,6 +56,7 @@ const DiscoverStack = () => (
       name="DiscoverFilterScreen"
       component={DiscoverFilterScreen}
     />
+    <Stack.Screen name="Chat" component={ChatScreen} />
   </Stack.Navigator>
 );
 

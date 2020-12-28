@@ -37,6 +37,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   title: {
+    textTransform: "capitalize",
     fontSize: 15,
     width: 150,
     marginRight: 10,
