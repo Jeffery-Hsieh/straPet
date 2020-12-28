@@ -1,9 +1,10 @@
-import React, { useState, useLayoutEffect, useEffect } from "react";
+import React, { useState, useLayoutEffect, useEffect, Component } from "react";
 import {
   TextInput,
   StyleSheet,
   TouchableOpacity,
   View,
+  Dimensions,
   ScrollView,
   ActionSheetIOS,
   Alert,
@@ -20,6 +21,38 @@ import useGetImagePicker from "../../hooks/useGetImagePicker";
 import CameraModule from "../../components/Camera";
 
 import RadarChart from "../../components/RadarChart";
+import TagInput from "react-native-tags-input";
+import Tags from "react-native-tags";
+
+export class Tagging extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      tags: {
+        tag: "",
+        tagsArray: [],
+      },
+    };
+  }
+
+  updateTagState = (state) => {
+    this.setState({
+      tags: state,
+    });
+  };
+
+  render() {
+    return (
+      <View style={tagStyles.container}>
+        <TagInput
+          placeholder="Add Tags..."
+          updateState={this.updateTagState}
+          tags={this.state.tags}
+        />
+      </View>
+    );
+  }
+}
 
 const genders = ["Male", "Female", "Unknown"];
 
@@ -199,6 +232,10 @@ const UploadScreen = ({ navigation, route }) => {
         />
       </View>
       <View style={styles.col}>
+        <Text style={styles.title}>Tags</Text>
+        <Tagging style={tagStyles.container} />
+      </View>
+      <View style={styles.col}>
         <Text style={styles.title}>Description</Text>
         <TextInput
           multiline
@@ -277,6 +314,16 @@ const radioButtonStyles = StyleSheet.create({
   },
 });
 
+const tagStyles = StyleSheet.create({
+  container: {
+    borderColor: "gray",
+    borderWidth: 1,
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+});
+
 const pickerSelectStyles = StyleSheet.create({
   inputIOS: {
     fontSize: 16,
@@ -289,5 +336,4 @@ const pickerSelectStyles = StyleSheet.create({
     paddingRight: 30, // to ensure the text is never behind the icon
   },
 });
-
 export default UploadScreen;
