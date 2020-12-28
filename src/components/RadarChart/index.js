@@ -4,12 +4,12 @@ import Svg, { Line, Polygon, Text } from "react-native-svg";
 import _ from "lodash";
 
 const labels = [
-  "Extraverted",
-  "Friendly",
-  "Energetic",
-  "Self Control",
-  "Size",
-  "Appetite",
+  { text: "Extraverted", coord: [160, 36] },
+  { text: "Friendly", coord: [80, 10] },
+  { text: "Energetic", coord: [8, 36] },
+  { text: "Self Control", coord: [8, 128] },
+  { text: "Size", coord: [79, 160] },
+  { text: "Appetite", coord: [160, 128] },
 ];
 
 const svgY = (degrees) => degrees + 180;
@@ -26,9 +26,10 @@ const calculateEdgePointFn = (center, radius) => (degree, scale = 1) => {
 };
 
 export default ({ data }) => {
-  const viewBoxSize = 120;
+  const viewBoxSize = 160;
   const viewBoxCenter = viewBoxSize * 0.5;
   const radius = viewBoxSize * 0.4;
+  const labelCoordinates = [[135, 47], []];
 
   const calculateEdgePoint = useMemo(
     () => calculateEdgePointFn(viewBoxCenter, radius),
@@ -48,33 +49,20 @@ export default ({ data }) => {
         width="100%"
         viewBox={`0 0 ${viewBoxSize} ${viewBoxSize}`}
       >
-        {labels.map((label, i) => {
-          const edgePoint = calculateEdgePoint(30 + i * 60, 1);
+        {labels.map((data) => {
           return (
             <Text
-              stoke="black"
-              x={edgePoint[1]}
-              y={edgePoint[0]}
-              fontSize="20"
-              fill="none"
+              fill="black"
+              fontSize="10"
+              fontWeight="bold"
+              x={data.coord[0]}
+              y={data.coord[1]}
               textAnchor="middle"
             >
-              {label}
+              {data.text}
             </Text>
           );
         })}
-
-        <Text
-          fill="none"
-          stroke="purple"
-          fontSize="20"
-          fontWeight="bold"
-          x="100"
-          y="20"
-          textAnchor="middle"
-        >
-          STROKED TEXT
-        </Text>
 
         {[40, 70, 100].map((r) => (
           <Polygon

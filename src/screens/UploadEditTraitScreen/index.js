@@ -68,6 +68,7 @@ const EditTraitScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   radarContainer: {
     flex: 1,
+    marginTop: 12,
   },
   sliderContainer: {
     flex: 3,

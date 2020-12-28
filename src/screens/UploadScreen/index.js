@@ -130,8 +130,8 @@ const UploadScreen = ({ navigation, route }) => {
 
   return (
     <ScrollView style={styles.container}>
-      <View style={styles.row}>
-        <TouchableOpacity>
+      <View style={styles.touchView}>
+        <TouchableOpacity style={styles.avatarTouch}>
           <Avatar.Image size={120} source={{ uri: image }} />
           <IconButton
             style={styles.camera}
@@ -140,15 +140,11 @@ const UploadScreen = ({ navigation, route }) => {
             color={Colors.black}
             onPress={ImageButtonOnPress}
           />
-          {/* {camera && (
-            <CameraModule
-              showModal={camera}
-              setModalVisible={() => setShowCamera(false)}
-              setImage={(result) => setCameraImage(result.uri)}
-            />
-          )} */}
         </TouchableOpacity>
-        <TouchableOpacity style={styles.radarChart} onPress={editRadarChart}>
+        <TouchableOpacity
+          style={styles.radarChartTouch}
+          onPress={editRadarChart}
+        >
           <RadarChart data={data} />
         </TouchableOpacity>
       </View>
@@ -192,7 +188,7 @@ const UploadScreen = ({ navigation, route }) => {
         />
       </View>
       <View style={styles.col}>
-        <Text style={styles.title}>Address1</Text>
+        <Text style={styles.title}>Address</Text>
         <TextInput
           multiline
           style={styles.address}
@@ -219,18 +215,25 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 10,
     paddingLeft: 20,
-    paddingRight: 20,
   },
-  row: {
-    flex: 1,
+  touchView: {
+    height: 160,
     marginTop: 20,
     marginBottom: 20,
     flexDirection: "row",
-    justifyContent: "space-around",
+    alignItems: "center",
+    marginLeft: 12,
   },
   col: {
     flex: 1,
     marginBottom: 20,
+    paddingRight: 16,
+  },
+  avatarTouch: {
+    flex: 1,
+  },
+  radarChartTouch: {
+    flex: 2,
   },
   camera: {
     backgroundColor: "#F1E3CD",
@@ -239,8 +242,8 @@ const styles = StyleSheet.create({
     bottom: -10,
   },
   radarChart: {
-    width: 120,
-    height: 120,
+    width: 180,
+    height: 180,
   },
   title: {
     marginBottom: 16,
