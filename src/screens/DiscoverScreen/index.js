@@ -42,7 +42,7 @@ const Discover = ({ navigation, route }) => {
     navigation.push("DiscoverDetailScreen", { animalId: id });
   };
 
-  const Item = ({ id, image, city, district, breed, tags, gender }) => {
+  const Item = ({ id, image, age, place, breed, tags, gender }) => {
     const tagList = tags.map((tag) => (
       <Text key={tag} style={styles.tag}>
         {tag}
@@ -67,8 +67,8 @@ const Discover = ({ navigation, route }) => {
               color={gender == "female" ? Colors.red500 : Colors.blue500}
             />
           </View>
-          <Text style={styles.text}>{city}</Text>
-          <Text style={styles.text}>{district}</Text>
+          <Text style={styles.text}>{age}</Text>
+          <Text style={styles.text}>{place}</Text>
         </View>
       </TouchableOpacity>
     );
@@ -81,8 +81,8 @@ const Discover = ({ navigation, route }) => {
       animal={item.animal}
       breed={item.breed}
       tags={item.tags}
-      city={item.city}
-      district={item.district}
+      age={item.age}
+      place={item.place}
       gender={item.gender}
     />
   );
