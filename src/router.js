@@ -19,6 +19,7 @@ import DiscoverDetailScreen from "./screens/DiscoverDetailScreen";
 import DiscoverFilterScreen from "./screens/DiscoverFilterScreen";
 
 import ChatScreen from "./screens/ChatScreen";
+import UploadedListScreen from "./screens/UploadedListScreen";
 import UploadEditTraitScreen from "./screens/UploadEditTraitScreen";
 import UploadCompleteScreen from "./screens/UploadCompleteScreen";
 
@@ -72,10 +73,18 @@ const MessageStack = () => (
 );
 
 const UploadStack = () => (
-  <Stack.Navigator initialRouteName="Upload" screenOptions={screenOptionStyle}>
+  <Stack.Navigator
+    initialRouteName="Animals Uploaded"
+    screenOptions={screenOptionStyle}
+  >
+    <Stack.Screen name="Aniamls Uploaded" component={UploadedListScreen} />
     <Stack.Screen name="Upload" component={Upload} />
     <Stack.Screen name="EditTrait" component={UploadEditTraitScreen} />
-    <Stack.Screen name="UploadComplete" component={UploadCompleteScreen} />
+    <Stack.Screen
+      name="UploadComplete"
+      component={UploadCompleteScreen}
+      options={{ title: "" }}
+    />
   </Stack.Navigator>
 );
 

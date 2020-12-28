@@ -7,7 +7,8 @@ const idToName = {
   EpXW3zdl3S3tKp9gFKe4: "Banqiao Public Shelter",
 };
 
-const useGetPreviewMessage = (firebase, userId) => {
+const useGetPreviewMessage = (firebase, id) => {
+  const [userId, setUserId] = useState(id);
   const [groupData, setGroupData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -74,9 +75,9 @@ const useGetPreviewMessage = (firebase, userId) => {
     return () => {
       didCancel = true;
     };
-  }, []);
+  }, [userId]);
 
-  return [{ groupData, isLoading, isError }];
+  return [{ groupData, isLoading, isError }, setUserId];
 };
 
 export default useGetPreviewMessage;

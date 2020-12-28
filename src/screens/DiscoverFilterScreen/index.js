@@ -37,27 +37,27 @@ const selectData = [
     key: "city",
     title: "City",
     options: [
-      { label: "Taipei City", value: "taipei" },
-      { label: "New Taipei City", value: "new taipei" },
-      { label: "Tauyuan City", value: "tauyuan" },
+      { label: "Taipei City", value: "Taipei City" },
+      { label: "New Taipei City", value: "New Taipei City" },
+      { label: "Taoyuan City", value: "Taoyuan City" },
     ],
   },
   {
     key: "age",
     title: "Age",
     options: [
-      { label: "~ 5", value: 0 },
-      { label: "5 ~ 10", value: 1 },
-      { label: "10 ~ ", value: 2 },
+      { label: "~ 5", value: "~ 5" },
+      { label: "5 ~ 10", value: "5 ~ 10" },
+      { label: "10 ~ ", value: "10 ~ " },
     ],
   },
 ];
 
 const DiscoverFilterScreen = ({ navigation }) => {
   const initialSelectState = {
+    species: "",
     breed: "",
     city: "",
-    district: "",
     age: "",
   };
 
@@ -69,6 +69,7 @@ const DiscoverFilterScreen = ({ navigation }) => {
     size: 0,
     appetite: 0,
   };
+
   const [filters, setFilters] = useState(initialSelectState);
   const [traits, setTraits] = useState(initialTraitState);
   const [gender, setGender] = useState("No Preference");
@@ -79,12 +80,12 @@ const DiscoverFilterScreen = ({ navigation }) => {
         <IconButton
           icon="check"
           onPress={() => {
-            navigation.navigate("Discover", { filters: filters });
+            navigation.navigate("Discover", { filters: { ...filters } });
           }}
         />
       ),
     });
-  }, [navigation]);
+  }, [navigation, filters]);
 
   const changeFilterValue = (key, newValue) => {
     setFilters({ ...filters, [key]: newValue });

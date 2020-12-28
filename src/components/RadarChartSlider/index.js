@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import Slider from "@react-native-community/slider";
 
-const radarChartSlider = ({ label, trait, traitOnChange }) => {
+const radarChartSlider = ({ label, initValue, traitOnChange }) => {
   const handleChange = (newValue) => {
-    traitOnChange({ [trait]: newValue });
+    traitOnChange(newValue);
   };
 
   return (
@@ -17,6 +17,7 @@ const radarChartSlider = ({ label, trait, traitOnChange }) => {
           maximumValue={100}
           minimumTrackTintColor="#F1E3CD"
           maximumTrackTintColor="#FFFFFF"
+          value={initValue}
           onValueChange={handleChange}
           trackImage={"../../assets/sliderButton.png"}
         />

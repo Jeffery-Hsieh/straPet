@@ -42,15 +42,6 @@ const ages = [
   { label: "10~", value: "10~" },
 ];
 
-let initTraits = {
-  extraverted: 0,
-  friendly: 0,
-  energetic: 0,
-  selfControl: 0,
-  size: 0,
-  appetite: 0,
-};
-
 const UploadScreen = ({ navigation, route }) => {
   const [gender, setGender] = useState("Unknown");
   const [breed, setBreed] = useState("");
@@ -59,7 +50,16 @@ const UploadScreen = ({ navigation, route }) => {
   const [city, setCity] = useState("");
   const [description, setDescription] = useState("");
 
-  initTraits = route.params ? route.params.traits : initTraits;
+  const initTraits = route.params
+    ? route.params.initTraits
+    : {
+        extraverted: 0,
+        friendly: 0,
+        energetic: 0,
+        selfControl: 0,
+        size: 0,
+        appetite: 0,
+      };
 
   const [traits, setTraits] = useState(initTraits);
   const [{ image }, onPickImage] = useGetImagePicker(null);
@@ -67,7 +67,7 @@ const UploadScreen = ({ navigation, route }) => {
   const [camera, setShowCamera] = useState(false);
   const [hasPermission, setHasPermission] = useState(null);
 
-  const data = Object.keys(traits).map((key) => initTraits[key]);
+  const data = Object.keys(traits).map((key) => traits[key]);
 
   const genderRadioBtns = genders.map((g) => (
     <TouchableOpacity
@@ -80,8 +80,10 @@ const UploadScreen = ({ navigation, route }) => {
     </TouchableOpacity>
   ));
 
+  useEffect(() => setTraits(initTraits), [initTraits]);
+
   const editRadarChart = () => {
-    navigation.push("EditTrait");
+    navigation.push("EditTrait", { initTraits: { ...traits } });
   };
 
   useLayoutEffect(() => {

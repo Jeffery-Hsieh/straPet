@@ -29,17 +29,6 @@ const ProfileScreen = ({ navigation }) => {
     setUserIndex(newUserIndex);
   };
 
-  // useLayoutEffect(() => {
-  //   navigation.setOptions({
-  //     headerRight: () => (
-  //       <IconButton
-  //         icon={userIndex == 0 ? "face" : "home"}
-  //         onPress={changeUser}
-  //       />
-  //     ),
-  //   });
-  // }, [navigation, userIndex]);
-
   const { name, image } = users[userIndex];
 
   return (
@@ -60,15 +49,14 @@ const ProfileScreen = ({ navigation }) => {
         <Text style={styles.text}>shiba@gmail.com</Text>
       </View>
       <View style={styles.row}>
-        <Text style={styles.label}>Shelter</Text>
-        <View style={{ width: 200, }}>
+        <Text style={styles.label}>{userIndex == 0 ? "User" : "Shelter"}</Text>
+        <View style={{ width: 200 }}>
           <Switch
             onValueChange={changeUser}
-            value={userIndex == 0 ? false : true }
+            value={userIndex == 0 ? false : true}
           />
         </View>
       </View>
-      
     </View>
   );
 };

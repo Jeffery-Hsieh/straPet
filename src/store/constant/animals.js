@@ -7,8 +7,14 @@ const animals = [
     breed: "mixed",
     city: "New Taipei City",
     district: "Zhonghe District",
+    place: " Zhonghe, New Taipei",
     gender: "female",
     tags: ["#Quiet", "#Medium Size"],
+<<<<<<< HEAD
+    age: "~ 5",
+=======
+    age: "5~10 yrs",
+>>>>>>> 633d4e39ec469d84d39353ff8cce59edfc283572
   },
   {
     id: 1,
@@ -22,8 +28,14 @@ const animals = [
     breed: "mixed",
     city: "Taoyuan City",
     district: "Xinwu District",
+    place: "Xinwu, Taoyuan",
     gender: "male",
     tags: ["#Puppy"],
+<<<<<<< HEAD
+    age: "5 ~ 10",
+=======
+    age: "0~5 yrs",
+>>>>>>> 633d4e39ec469d84d39353ff8cce59edfc283572
   },
   {
     id: 2,
@@ -33,8 +45,14 @@ const animals = [
     breed: "mixed",
     city: "Miaoli County",
     district: "Tongluo Township",
+    place: "Tongluo, Miaoli",
     gender: "female",
     tags: ["#Protective"],
+<<<<<<< HEAD
+    age: "10 ~ ",
+=======
+    age: "5~10 yrs",
+>>>>>>> 633d4e39ec469d84d39353ff8cce59edfc283572
   },
   {
     id: 3,
@@ -44,8 +62,14 @@ const animals = [
     breed: "mixed",
     city: "Kaohsiung City ",
     district: "Gushan District",
+    place: "Gushan, Kaohsiung",
     gender: "male",
     tags: ["#Play", "#Close to people"],
+<<<<<<< HEAD
+    age: "10 ~ ",
+=======
+    age: "0~5 yrs",
+>>>>>>> 633d4e39ec469d84d39353ff8cce59edfc283572
   },
   {
     id: 4,
@@ -55,8 +79,14 @@ const animals = [
     breed: "shiba",
     city: "Hsinchu City",
     district: "North District",
+    place: "North, Hsinchu",
     gender: "female",
     tags: ["#Close to people"],
+<<<<<<< HEAD
+    age: "5 ~ 10",
+=======
+    age: "0~5 yrs",
+>>>>>>> 633d4e39ec469d84d39353ff8cce59edfc283572
   },
   {
     id: 5,
@@ -70,8 +100,14 @@ const animals = [
     breed: "migru",
     city: "Tainan City",
     district: "South District",
+    place: "South, Tainan",
     gender: "male",
     tags: ["#Play", "#Friendly"],
+<<<<<<< HEAD
+    age: "~ 5",
+=======
+    age: "5~10 yrs",
+>>>>>>> 633d4e39ec469d84d39353ff8cce59edfc283572
   },
   {
     id: 6,
@@ -81,8 +117,15 @@ const animals = [
     breed: "kingira",
     city: "Kaohsiung City",
     district: "Gushan District",
+    place: "Gushan, Kaohsiung",
     gender: "female",
+<<<<<<< HEAD
     tags: [],
+    age: "5 ~ 10",
+=======
+    tags: ["#Not close to people"],
+    age: "10~ yrs",
+>>>>>>> 633d4e39ec469d84d39353ff8cce59edfc283572
   },
   {
     id: 7,
@@ -92,8 +135,14 @@ const animals = [
     breed: "mixed",
     city: "New Taipei City",
     district: "Benquai District",
+    place: "Benquai, New Taipei",
     gender: "female",
     tags: ["#Introvert"],
+<<<<<<< HEAD
+    age: "~ 5",
+=======
+    age: "10~ yrs",
+>>>>>>> 633d4e39ec469d84d39353ff8cce59edfc283572
   },
   {
     id: 8,
@@ -103,8 +152,14 @@ const animals = [
     breed: "mixed",
     city: "Hsinchu City",
     district: "North District",
+    place: "North, Hsinchu",
     gender: "male",
     tags: ["#Cute", "#Play"],
+<<<<<<< HEAD
+    age: "~ 5",
+=======
+    age: "0~5 yrs",
+>>>>>>> 633d4e39ec469d84d39353ff8cce59edfc283572
   },
   {
     id: 9,
@@ -114,8 +169,14 @@ const animals = [
     breed: "mixed",
     city: "Taichung City",
     district: "Nantun District",
+    place: "Nantun, Taichung",
     gender: "female",
     tags: ["#Quiet"],
+<<<<<<< HEAD
+    age: "~ 5",
+=======
+    age: "5~10 yrs",
+>>>>>>> 633d4e39ec469d84d39353ff8cce59edfc283572
   },
   {
     id: 10,
@@ -125,8 +186,14 @@ const animals = [
     breed: "mixed",
     city: "Kinmen County",
     district: "Jinhu Township",
+    place: "Jinhu, Kinmen",
     gender: "female",
     tags: ["#Introvert"],
+<<<<<<< HEAD
+    age: "~ 5",
+=======
+    age: "10~ yrs",
+>>>>>>> 633d4e39ec469d84d39353ff8cce59edfc283572
   },
 ];
 

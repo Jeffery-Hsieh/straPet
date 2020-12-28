@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect } from "react";
+import React, { useState, useLayoutEffect, useEffect } from "react";
 import RadarChart from "../../components/RadarChart";
 import { View, StyleSheet } from "react-native";
 import RadarChartSlider from "../../components/RadarChartSlider";
@@ -13,15 +13,8 @@ const traitsLabels = {
   appetite: "Appetite",
 };
 
-const EditTraitScreen = ({ navigation }) => {
-  const initTraits = {
-    extraverted: 0,
-    friendly: 0,
-    energetic: 0,
-    selfControl: 0,
-    size: 0,
-    appetite: 0,
-  };
+const EditTraitScreen = ({ navigation, route }) => {
+  const { initTraits } = route.params;
   const [traits, setTraits] = useState(initTraits);
   const data = Object.keys(traits).map((key) => traits[key]);
 
@@ -30,27 +23,30 @@ const EditTraitScreen = ({ navigation }) => {
       headerRight: () => (
         <IconButton
           icon="check"
-          onPress={() => navigation.navigate("Upload", { traits: traits })}
+          onPress={() => {
+            navigation.navigate("Upload", { initTraits: { ...traits } });
+          }}
         />
       ),
     });
   }, [navigation, traits]);
 
-  const handleSliderChange = (newValue) => {
+  const handleSliderChange = (trait, newValue) => {
     setTraits({
       ...traits,
-      ...newValue,
+      [trait]: newValue,
     });
   };
 
-  const sliders = Object.keys(initTraits).map((trait) => {
+  const sliders = Object.keys(traits).map((trait) => {
     const label = traitsLabels[trait];
     return (
       <RadarChartSlider
         key={trait}
         label={label}
         trait={trait}
-        traitOnChange={handleSliderChange}
+        initValue={initTraits[trait]}
+        traitOnChange={(newValue) => handleSliderChange(trait, newValue)}
       />
     );
   });

@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import SessionContext from "../../store/context";
 import useGetPreviewMessage from "../../hooks/useGetPreviewMessage";
 import { Avatar } from "react-native-paper";
+import { set } from "lodash";
 
 const image = {
   John: require("../../assets/images/Zk18OTDq8N1Ly9YtEle3.jpg"),
@@ -14,10 +15,14 @@ const MessageScreen = ({ navigation }) => {
   const [session] = useContext(SessionContext);
   const { firebase, userId } = session;
 
-  const [{ groupData, isLaoding, isError }] = useGetPreviewMessage(
+  const [{ groupData, isLaoding, isError }, setUserId] = useGetPreviewMessage(
     firebase,
     userId
   );
+
+  useEffect(() => {
+    setUserId(userId);
+  }, [userId]);
 
   const groupMessage = groupData.map(({ groupId, name, message }) => (
     <TouchableOpacity

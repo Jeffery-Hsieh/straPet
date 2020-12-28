@@ -52,6 +52,7 @@ export default ({ data }) => {
         {labels.map((data) => {
           return (
             <Text
+              key={data.text}
               fill="black"
               fontSize="10"
               fontWeight="bold"

@@ -13,10 +13,12 @@ const VolunteerScreen = () => {
         <View style={{ flex: 1, flextDirection: "column" }}>
           <Text style={styles.information}>{shelter}</Text>
           <View style={styles.informationContainer}>
-            <Text style={styles.information}>{breed}</Text>
+            <Text style={styles.information}>
+              {breed != "mixed" ? breed : null}
+            </Text>
             <IconButton
-              icon={gender == "Female" ? "gender-male" : "gender-female"}
-              color={gender == "Female" ? Colors.blue500 : Colors.red500}
+              icon={gender == "female" ? "gender-male" : "gender-female"}
+              color={gender == "female" ? Colors.blue500 : Colors.red500}
             />
           </View>
         </View>

@@ -13,12 +13,19 @@ import _ from "lodash";
 
 const Discover = ({ navigation, route }) => {
   const [{ animals }] = useContext(SessionContext);
-  const filters = route.params ? route.params.filters : null;
 
-  const randNumDisplay = Math.ceil(Math.random() * animals.length);
-
-  const animalsFiltered = filters
-    ? _.sampleSize(animals, randNumDisplay)
+  const animalsFiltered = route.params
+    ? animals.filter((animal) => {
+        let match = true;
+        const { filters } = route.params;
+        console.log(filters);
+        Object.keys(filters).forEach((key) => {
+          if (filters[key] != "" && filters[key] !== animal[key]) {
+            match = false;
+          }
+        });
+        return match;
+      })
     : animals;
 
   useLayoutEffect(() => {
@@ -42,7 +49,7 @@ const Discover = ({ navigation, route }) => {
     navigation.push("DiscoverDetailScreen", { animalId: id });
   };
 
-  const Item = ({ id, image, city, district, breed, tags, gender }) => {
+  const Item = ({ id, image, age, place, breed, tags, gender }) => {
     const tagList = tags.map((tag) => (
       <Text key={tag} style={styles.tag}>
         {tag}
@@ -67,8 +74,8 @@ const Discover = ({ navigation, route }) => {
               color={gender == "female" ? Colors.red500 : Colors.blue500}
             />
           </View>
-          <Text style={styles.text}>{city}</Text>
-          <Text style={styles.text}>{district}</Text>
+          <Text style={styles.text}>{age}</Text>
+          <Text style={styles.text}>{place}</Text>
         </View>
       </TouchableOpacity>
     );
@@ -81,16 +88,18 @@ const Discover = ({ navigation, route }) => {
       animal={item.animal}
       breed={item.breed}
       tags={item.tags}
-      city={item.city}
-      district={item.district}
+      age={item.age}
+      place={item.place}
       gender={item.gender}
     />
   );
 
   return (
     <SafeAreaView style={styles.container}>
-      {filters ? (
-        <Text style={styles.matchNumber}>{randNumDisplay} animals matched</Text>
+      {route.params ? (
+        <Text style={styles.matchNumber}>
+          {animalsFiltered.length} animals matched
+        </Text>
       ) : null}
       <FlatList
         contentContainerStyle={styles.gridContainer}
