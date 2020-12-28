@@ -82,7 +82,7 @@ const animals = [
     city: "Kaohsiung City",
     district: "Gushan District",
     gender: "female",
-    tags: [],
+    tags: ["#Not close to people"],
   },
   {
     id: 7,
