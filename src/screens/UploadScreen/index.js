@@ -22,7 +22,6 @@ import CameraModule from "../../components/Camera";
 
 import RadarChart from "../../components/RadarChart";
 import TagInput from "react-native-tags-input";
-import Tags from "react-native-tags";
 
 export class Tagging extends React.Component {
   constructor(props) {

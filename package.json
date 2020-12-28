@@ -48,6 +48,7 @@
     "react-native-search-box": "^0.0.20",
     "react-native-shapes": "^0.1.0",
     "react-native-svg": "12.1.0",
+    "react-native-tags-input": "^1.0.10",
     "react-native-web": "~0.13.12"
   },
   "devDependencies": {
