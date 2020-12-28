@@ -6,7 +6,7 @@ import {
   View,
   ScrollView,
   ActionSheetIOS,
-  Alert
+  Alert,
 } from "react-native";
 import RNPickerSelect from "react-native-picker-select";
 import {
@@ -36,6 +36,12 @@ const breeds = [
   { label: "Corgi Triever", value: "corgi triever" },
 ];
 
+const ages = [
+  { label: "~5", value: "~5" },
+  { label: "5~10", value: "5~10" },
+  { label: "10~", value: "10~" },
+];
+
 let initTraits = {
   extraverted: 0,
   friendly: 0,
@@ -48,8 +54,9 @@ let initTraits = {
 const UploadScreen = ({ navigation, route }) => {
   const [gender, setGender] = useState("Unknown");
   const [breed, setBreed] = useState("");
+  const [age, setAge] = useState("");
   const [address, setAddress] = useState("");
-  const [city, setCity] = useState("taipei");
+  const [city, setCity] = useState("");
   const [description, setDescription] = useState("");
 
   initTraits = route.params ? route.params.traits : initTraits;
@@ -59,7 +66,7 @@ const UploadScreen = ({ navigation, route }) => {
   const [cameraImage, setCameraImage] = useState(null);
   const [camera, setShowCamera] = useState(false);
   const [hasPermission, setHasPermission] = useState(null);
-  
+
   const data = Object.keys(traits).map((key) => initTraits[key]);
 
   const genderRadioBtns = genders.map((g) => (
@@ -88,33 +95,31 @@ const UploadScreen = ({ navigation, route }) => {
     });
   }, [navigation, setDescription]);
 
-  const ImageButtonOnPress = () => ActionSheetIOS.showActionSheetWithOptions({
-      options: ['Cancel', 'Camera', 'Album'],
-      cancelButtonIndex: 0,
-    },
-    buttonIndex => {
-      if (buttonIndex === 0) {
-        // cancel action
-      } else if (buttonIndex === 1) {
-        if (hasPermission === null || hasPermission === false) {
-          Alert.alert(
-            "Message",
-            "Camera Permission fail",
-            [
-              { text: "OK", onPress: () => console.log("OK Pressed") }
-            ],
-            { cancelable: false }
-          );
+  const ImageButtonOnPress = () =>
+    ActionSheetIOS.showActionSheetWithOptions(
+      {
+        options: ["Cancel", "Camera", "Album"],
+        cancelButtonIndex: 0,
+      },
+      (buttonIndex) => {
+        if (buttonIndex === 0) {
+          // cancel action
+        } else if (buttonIndex === 1) {
+          if (hasPermission === null || hasPermission === false) {
+            Alert.alert(
+              "Message",
+              "Camera Permission fail",
+              [{ text: "OK", onPress: () => console.log("OK Pressed") }],
+              { cancelable: false }
+            );
+          } else {
+            setShowCamera(true);
+          }
+        } else if (buttonIndex === 2) {
+          onPickImage();
         }
-        else {
-          setShowCamera(true);
-        }
-          
-      } else if (buttonIndex === 2) {
-        onPickImage();
       }
-    }
-  );
+    );
 
   useEffect(() => {
     (async () => {
@@ -127,10 +132,7 @@ const UploadScreen = ({ navigation, route }) => {
     <ScrollView style={styles.container}>
       <View style={styles.row}>
         <TouchableOpacity>
-          <Avatar.Image
-            size={120}
-            source={{ uri: image }}
-          />
+          <Avatar.Image size={120} source={{ uri: image }} />
           <IconButton
             style={styles.camera}
             icon="camera"
@@ -161,6 +163,19 @@ const UploadScreen = ({ navigation, route }) => {
           onValueChange={(value) => setBreed(value)}
           value={breed}
           items={breeds}
+        />
+      </View>
+      <View style={styles.col}>
+        <Text style={styles.title}>Age</Text>
+        <RNPickerSelect
+          placeholder={{
+            label: "Select the age range...",
+            value: null,
+          }}
+          style={{ ...pickerSelectStyles }}
+          onValueChange={(value) => setAge(value)}
+          value={age}
+          items={ages}
         />
       </View>
       <View style={styles.col}>
@@ -271,4 +286,3 @@ const pickerSelectStyles = StyleSheet.create({
 });
 
 export default UploadScreen;
-      
