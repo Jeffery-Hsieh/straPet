@@ -76,7 +76,7 @@ const DiscoverFilterScreen = ({ navigation }) => {
 
   const [filters, setFilters] = useState(initialSelectState);
   const [traits, setTraits] = useState(initialTraitState);
-  const [gender, setGender] = useState("No Preference");
+  const [gender, setGender] = useState("");
 
   useLayoutEffect(() => {
     navigation.setOptions({

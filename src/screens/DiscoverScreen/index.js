@@ -14,10 +14,11 @@ import _ from "lodash";
 const Discover = ({ navigation, route }) => {
   const [{ animals }] = useContext(SessionContext);
 
+  const filters = route.params && route.params.filters;
+
   const animalsFiltered = route.params
     ? animals.filter((animal) => {
         let match = true;
-        const { filters } = route.params;
         Object.keys(filters).forEach((key) => {
           if (filters[key] != "" && filters[key] !== animal[key]) {
             match = false;
