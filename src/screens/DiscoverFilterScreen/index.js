@@ -11,7 +11,11 @@ import RadarChartSlider from "../../components/RadarChartSlider";
 import { IconButton, RadioButton } from "react-native-paper";
 import { filter } from "lodash";
 
-const genders = ["Male", "Female", "No Preference"];
+const genders = [
+  { label: "Male", value: "male" },
+  { label: "Female", value: "female" },
+  { label: "No Preference", value: "" },
+];
 
 const selectData = [
   {
@@ -81,7 +85,7 @@ const DiscoverFilterScreen = ({ navigation }) => {
           icon="check"
           onPress={() => {
             navigation.navigate("Discover", {
-              filters: { ...filters, gender: gender.toLowerCase() },
+              filters: { ...filters, gender: gender },
             });
           }}
         />
@@ -102,12 +106,15 @@ const DiscoverFilterScreen = ({ navigation }) => {
 
   const genderRadioBtns = genders.map((g) => (
     <TouchableOpacity
-      key={g}
+      key={g.label}
       style={radioButtonStyles.container}
-      onPress={() => setGender(g)}
+      onPress={() => setGender(g.value)}
     >
-      <RadioButton value={g} status={g === gender ? "checked" : "unchecked"} />
-      <Text>{g}</Text>
+      <RadioButton
+        value={g.value}
+        status={g.value === gender ? "checked" : "unchecked"}
+      />
+      <Text>{g.label}</Text>
     </TouchableOpacity>
   ));
 
