@@ -75,13 +75,6 @@ const ages = [
 ];
 
 const UploadScreen = ({ navigation, route }) => {
-  const [gender, setGender] = useState("Unknown");
-  const [breed, setBreed] = useState("");
-  const [age, setAge] = useState("");
-  const [address, setAddress] = useState("");
-  const [city, setCity] = useState("");
-  const [description, setDescription] = useState("");
-
   const initTraits = route.params
     ? route.params.initTraits
     : {
@@ -92,6 +85,13 @@ const UploadScreen = ({ navigation, route }) => {
         size: 0,
         appetite: 0,
       };
+
+  const [gender, setGender] = useState("Unknown");
+  const [breed, setBreed] = useState("");
+  const [age, setAge] = useState("");
+  const [address, setAddress] = useState("");
+  const [city, setCity] = useState("");
+  const [description, setDescription] = useState("");
 
   const [traits, setTraits] = useState(initTraits);
   const [{ image }, onPickImage] = useGetImagePicker(null);

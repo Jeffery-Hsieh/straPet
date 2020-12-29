@@ -80,12 +80,14 @@ const DiscoverFilterScreen = ({ navigation }) => {
         <IconButton
           icon="check"
           onPress={() => {
-            navigation.navigate("Discover", { filters: { ...filters } });
+            navigation.navigate("Discover", {
+              filters: { ...filters, gender: gender.toLowerCase() },
+            });
           }}
         />
       ),
     });
-  }, [navigation, filters]);
+  }, [navigation, filters, gender]);
 
   const changeFilterValue = (key, newValue) => {
     setFilters({ ...filters, [key]: newValue });
