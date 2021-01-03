@@ -1,5 +1,6 @@
 import React, { useState, useLayoutEffect } from "react";
 import {
+  ScrollView,
   Text,
   View,
   FlatList,
@@ -50,9 +51,25 @@ const selectData = [
     key: "age",
     title: "Age",
     options: [
-      { label: "0~5 yrs", value: "0~5 yrs" },
-      { label: "5~10 yrs", value: "5~10 yrs" },
-      { label: "10~ yrs", value: "10~ yrs" },
+      { label: "1~3 months", value: "1~3 months" },
+      { label: "3~5 months", value: "3~5 months" },
+      { label: "5~12 months", value: "5~12 months" },
+      { label: "1~2 years", value: "1~2 years" },
+      { label: "2~ years", value: "2~ years" },
+    ],
+  },
+  {
+    key: "tag",
+    title: "Tag",
+    options: [
+      { label: "Quiet", value: "Quiet" },
+      { label: "Medium Size", value: "Medium Size" },
+      { label: "Puppy", value: "Puppy" },
+      { label: "Protective", value: "Protective" },
+      { label: "Play", value: "Play" },
+      { label: "Close to people", value: "Close to people" },
+      { label: "Friendly", value: "Friendly" },
+      { label: "Cute", value: "Cute" },
     ],
   },
 ];
@@ -63,6 +80,7 @@ const DiscoverFilterScreen = ({ navigation }) => {
     breed: "",
     city: "",
     age: "",
+    tag: "",
   };
 
   const initialTraitState = {
@@ -127,7 +145,7 @@ const DiscoverFilterScreen = ({ navigation }) => {
         value={filters[item.key]}
         items={item.options}
         placeholder={{
-          label: `select an item...`,
+          label: `No preference...`,
         }}
       />
     </View>
@@ -145,7 +163,7 @@ const DiscoverFilterScreen = ({ navigation }) => {
   });
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <View style={styles.genderView}>
         <Text style={styles.title}>Gender</Text>
         <View style={styles.radioBtns}>{genderRadioBtns}</View>
@@ -154,7 +172,7 @@ const DiscoverFilterScreen = ({ navigation }) => {
         <FlatList data={selectData} numColumns={2} renderItem={renderItem} />
       </View>
       <View style={styles.sliderContainer}>{sliders}</View>
-    </View>
+    </ScrollView>
   );
 };
 
@@ -179,7 +197,8 @@ const styles = StyleSheet.create({
     color: "#637E40",
   },
   sliderContainer: {
-    flex: 1,
+    height: 500,
+    marginTop: 12,
     justifyContent: "space-around",
     alignItems: "center",
   },

@@ -10,7 +10,7 @@ const animals = [
     place: " Zhonghe, New Taipei",
     gender: "female",
     tags: ["#Quiet", "#Medium Size"],
-    age: "0~5 yrs",
+    age: "1~3 months",
   },
   {
     id: 1,
@@ -27,7 +27,7 @@ const animals = [
     place: "Xinwu, Taoyuan",
     gender: "male",
     tags: ["#Puppy"],
-    age: "10~ yrs",
+    age: "3~5 months",
   },
   {
     id: 2,
@@ -40,7 +40,7 @@ const animals = [
     place: "Tongluo, Miaoli",
     gender: "female",
     tags: ["#Protective"],
-    age: "10~ yrs",
+    age: "3~5 months",
   },
   {
     id: 3,
@@ -53,7 +53,7 @@ const animals = [
     place: "Gushan, Kaohsiung",
     gender: "male",
     tags: ["#Play", "#Close to people"],
-    age: "10~ yrs",
+    age: "1~5 months",
   },
   {
     id: 4,
@@ -66,7 +66,7 @@ const animals = [
     place: "North, Hsinchu",
     gender: "female",
     tags: ["#Close to people"],
-    age: "5~10 yrs",
+    age: "1~5 months",
   },
   {
     id: 5,
@@ -83,7 +83,7 @@ const animals = [
     place: "South, Tainan",
     gender: "male",
     tags: ["#Play", "#Friendly"],
-    age: "0~5 yrs",
+    age: "5~12 months",
   },
   {
     id: 6,
@@ -96,7 +96,7 @@ const animals = [
     place: "Gushan, Kaohsiung",
     gender: "female",
     tags: ["#Not close to people"],
-    age: "10~ yrs",
+    age: "2~5 years",
   },
   {
     id: 7,
@@ -109,7 +109,7 @@ const animals = [
     place: "Benquai, New Taipei",
     gender: "female",
     tags: ["#Introvert"],
-    age: "10~ yrs",
+    age: "2~5 years",
   },
   {
     id: 8,
@@ -122,7 +122,7 @@ const animals = [
     place: "North, Hsinchu",
     gender: "male",
     tags: ["#Cute", "#Play"],
-    age: "0~5 yrs",
+    age: "5~ years",
   },
   {
     id: 9,
@@ -135,7 +135,7 @@ const animals = [
     place: "Nantun, Taichung",
     gender: "female",
     tags: ["#Quiet"],
-    age: "5~10 yrs",
+    age: "3~5 months",
   },
   {
     id: 10,
@@ -148,7 +148,7 @@ const animals = [
     place: "Jinhu, Kinmen",
     gender: "female",
     tags: ["#Introvert"],
-    age: "10~ yrs",
+    age: "2~ yrs",
   },
 ];
 

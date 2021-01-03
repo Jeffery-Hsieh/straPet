@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import SessionContext from "../../store/context";
 import { Avatar, IconButton, Colors } from "react-native-paper";
-import _ from "lodash";
+import _, { filter } from "lodash";
 
 const Discover = ({ navigation, route }) => {
   const [{ animals }] = useContext(SessionContext);
@@ -20,6 +20,13 @@ const Discover = ({ navigation, route }) => {
     ? animals.filter((animal) => {
         let match = true;
         Object.keys(filters).forEach((key) => {
+          if (key == "tag") {
+            if (filters[key] != "" && animal.tags.indexOf(`#${filters[key]}`)) {
+              match = false;
+            }
+            return;
+          }
+
           if (filters[key] != "" && filters[key] !== animal[key]) {
             match = false;
           }
@@ -65,9 +72,7 @@ const Discover = ({ navigation, route }) => {
         <View style={styles.contentView}>
           <View style={styles.tagContainer}>{tagList}</View>
           <View style={styles.subtitle}>
-            {breed != "mixed" ? (
-              <Text style={styles.breed}>{breed}</Text>
-            ) : null}
+            <Text style={styles.breed}>{breed}</Text>
             <IconButton
               style={styles.genderSymbol}
               icon={`gender-${gender}`}
@@ -156,12 +161,12 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
   },
   tag: {
-    fontSize: 12,
+    fontSize: 16,
     marginRight: 4,
     fontWeight: "bold",
   },
   text: {
-    flex: 1,
+    marginBottom: 12,
   },
 });
 
