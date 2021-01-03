@@ -123,7 +123,7 @@ const UploadScreen = ({ navigation, route }) => {
       headerRight: () => (
         <IconButton
           icon="check"
-          onPress={() => navigation.navigate("UploadComplete")}
+          onPress={() => navigation.push("UploadComplete")}
         />
       ),
     });
@@ -166,7 +166,11 @@ const UploadScreen = ({ navigation, route }) => {
     <ScrollView style={styles.container}>
       <View style={styles.touchView}>
         <TouchableOpacity style={styles.avatarTouch}>
-          <Avatar.Image size={120} source={{ uri: image }} />
+          <Avatar.Image
+            size={120}
+            source={{ uri: image }}
+            style={{ backgroundColor: "#04DAC4" }}
+          />
           <IconButton
             style={styles.camera}
             icon="camera"

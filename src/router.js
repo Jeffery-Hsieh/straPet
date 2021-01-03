@@ -77,7 +77,7 @@ const UploadStack = () => (
     initialRouteName="Animals Uploaded"
     screenOptions={screenOptionStyle}
   >
-    <Stack.Screen name="Aniamls Uploaded" component={UploadedListScreen} />
+    <Stack.Screen name="Animals Uploaded" component={UploadedListScreen} />
     <Stack.Screen name="Upload" component={Upload} />
     <Stack.Screen name="EditTrait" component={UploadEditTraitScreen} />
     <Stack.Screen

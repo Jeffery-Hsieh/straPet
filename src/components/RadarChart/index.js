@@ -94,9 +94,9 @@ export default ({ data }) => {
         ))}
 
         <Polygon
-          stroke={"#50E2C2"}
+          stroke={"#0060B8"}
           strokeWidth={1.2}
-          fill={"#50E2C2"}
+          fill={"#1E93FF"}
           fillOpacity={0.5}
           points={`${data.map((value, i) => {
             const edgePoint = calculateEdgePoint(30 + i * 60, value / 100);

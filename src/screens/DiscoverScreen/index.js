@@ -168,6 +168,10 @@ const styles = StyleSheet.create({
   text: {
     marginBottom: 12,
   },
+  breed: {
+    marginLeft: 17,
+    textTransform: "capitalize",
+  },
 });
 
 export default Discover;

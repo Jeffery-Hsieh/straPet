@@ -1,11 +1,24 @@
 import React, { useLayoutEffect } from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import { Avatar, IconButton, Colors } from "react-native-paper";
+import { TouchableOpacity, View, Text, StyleSheet, Button } from "react-native";
+import { HeaderBackButton } from "@react-navigation/stack";
+import { Avatar, IconButton } from "react-native-paper";
 
 const UploadCompleteScreen = ({ navigation }) => {
   useLayoutEffect(() => {
     navigation.setOptions({
-      headerLeft: null,
+      headerLeft: () => (
+        <HeaderBackButton
+          title="Back"
+          labelStyle={{ color: "#615846" }}
+          tintColor="#615846"
+          onPress={() =>
+            navigation.reset({
+              index: 0,
+              routes: [{ name: "Animals Uploaded" }],
+            })
+          }
+        />
+      ),
     });
   }, [navigation]);
 
