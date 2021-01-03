@@ -1,7 +1,11 @@
 const animals = [
   {
     id: 0,
-    image: [require("../../assets/images/animals/0_0.jpg")],
+    image: [
+      require("../../assets/images/animals/0_0.jpg"),
+      require("../../assets/images/animals/0_1.jpg"),
+      require("../../assets/images/animals/0_2.jpg"),
+    ],
     shelter: "New Taipei City Zhonghe District Public Animal House",
     species: "dog",
     breed: "mixed",
@@ -9,8 +13,8 @@ const animals = [
     district: "Zhonghe District",
     place: " Zhonghe, New Taipei",
     gender: "female",
-    tags: ["#Quiet", "#Medium Size"],
-    age: "1~3 months",
+    tags: ["#Quiet"],
+    age: "2~ years",
   },
   {
     id: 1,

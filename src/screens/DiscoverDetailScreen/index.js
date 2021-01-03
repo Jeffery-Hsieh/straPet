@@ -50,7 +50,7 @@ const DiscoverDetailScreen = ({ navigation, route }) => {
         <TouchableOpacity
           style={styles.contactContainer}
           onPress={() =>
-            navigation.navigate("Chat", { groupId: "KK4me439pyuuojQMecyd" })
+            navigation.navigate("Chat", { groupId: "pV343AjSSn7O0zbYwc4k" })
           }
         >
           <Text style={styles.contactText}>Contact</Text>

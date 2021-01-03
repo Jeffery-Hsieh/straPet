@@ -1,11 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  Modal,
-  Text,
-  TouchableOpacity,
-  View,
-  Image,
-} from "react-native";
+import { Modal, Text, TouchableOpacity, View, Image } from "react-native";
 import { Camera } from "expo-camera";
 
 const CameraModule = (props) => {
@@ -20,15 +14,15 @@ const CameraModule = (props) => {
         props.setModalVisible();
       }}
     >
-    <Camera
-      style={{ flex: 1 }}
-      ratio="16:9"
-      flashMode={Camera.Constants.FlashMode.on}
-      type={type}
-      ref={(ref) => {
-        setCameraRef(ref);
-      }}
-    >
+      <Camera
+        style={{ flex: 1 }}
+        ratio="16:9"
+        flashMode={Camera.Constants.FlashMode.on}
+        type={type}
+        ref={(ref) => {
+          setCameraRef(ref);
+        }}
+      >
         <View
           style={{
             flex: 1,
@@ -50,7 +44,7 @@ const CameraModule = (props) => {
               mode="outlined"
               color="white"
               onPress={() => {
-              props.setModalVisible();
+                props.setModalVisible();
               }}
             >
               Close
@@ -103,7 +97,7 @@ const CameraModule = (props) => {
                 );
               }}
             >
-          {type === Camera.Constants.Type.back ? "Front" : "Back "}
+              {type === Camera.Constants.Type.back ? "Front" : "Back "}
             </Button>
           </View>
         </View>

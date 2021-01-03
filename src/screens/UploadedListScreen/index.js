@@ -10,16 +10,17 @@ import SessionContext from "../../store/context";
 import { IconButton, Colors, Avatar } from "react-native-paper";
 
 const UploadedListScreen = ({ navigation }) => {
+  console.disableYellowBox = true;
   const [session] = useContext(SessionContext);
 
-  const favoritelist = session.favoritelist.map(
+  const favoritelist = session.animals.map(
     ({ id, shelter, image, breed, gender }) => (
       <TouchableOpacity key={id} style={styles.favoriteView}>
-        <Avatar.Image size={120} source={image} />
+        <Avatar.Image size={120} source={image[0]} />
         <View style={styles.infoView}>
           <Text style={styles.title}>{shelter}</Text>
           <View style={styles.contentView}>
-            <Text style={styles.text}>{breed != "mixed" ? breed : null}</Text>
+            <Text style={[styles.text, styles.breed]}>{breed}</Text>
             <IconButton
               style={styles.icon}
               icon={gender == "female" ? "gender-male" : "gender-female"}
@@ -87,6 +88,9 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 17,
     color: "grey",
+  },
+  breed: {
+    textTransform: "capitalize",
   },
 });
 

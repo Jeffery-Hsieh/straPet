@@ -1,13 +1,15 @@
 import React, { useState, useLayoutEffect, useEffect, Component } from "react";
 import {
+  KeyboardAvoidingView,
   TextInput,
   StyleSheet,
   TouchableOpacity,
   View,
-  Dimensions,
+  Platform,
   ScrollView,
   ActionSheetIOS,
   Alert,
+  Keyboard,
 } from "react-native";
 import RNPickerSelect from "react-native-picker-select";
 import {
@@ -62,6 +64,7 @@ const cities = [
 ];
 
 const breeds = [
+  { label: "Mixed", value: "Mixed" },
   { label: "Shiba", value: "shiba" },
   { label: "Labrador", value: "labrador" },
   { label: "Goldendoodle", value: "goldendoodle" },
@@ -69,9 +72,11 @@ const breeds = [
 ];
 
 const ages = [
-  { label: "~5", value: "~5" },
-  { label: "5~10", value: "5~10" },
-  { label: "10~", value: "10~" },
+  { label: "1~3 months", value: "1~3 months" },
+  { label: "3~5 months", value: "3~5 months" },
+  { label: "5~12 months", value: "5~12 months" },
+  { label: "1~2 years", value: "1~2 years" },
+  { label: "2~ years", value: "2~ years" },
 ];
 
 const UploadScreen = ({ navigation, route }) => {
@@ -163,91 +168,96 @@ const UploadScreen = ({ navigation, route }) => {
   }, []);
 
   return (
-    <ScrollView style={styles.container}>
-      <View style={styles.touchView}>
-        <TouchableOpacity style={styles.avatarTouch}>
-          <Avatar.Image
-            size={120}
-            source={{ uri: image }}
-            style={{ backgroundColor: "#04DAC4" }}
+    <KeyboardAvoidingView
+      style={styles.container}
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+    >
+      <ScrollView style={styles.scrollView}>
+        <View style={styles.touchView}>
+          <TouchableOpacity style={styles.avatarTouch}>
+            <Avatar.Image
+              size={120}
+              source={{ uri: image }}
+              style={{ backgroundColor: "#04DAC4" }}
+            />
+            <IconButton
+              style={styles.camera}
+              icon="camera"
+              size={30}
+              color={Colors.black}
+              onPress={ImageButtonOnPress}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.radarChartTouch}
+            onPress={editRadarChart}
+          >
+            <RadarChart data={data} />
+          </TouchableOpacity>
+        </View>
+        <View style={styles.col}>
+          <Text style={styles.title}>Gender</Text>
+          <View style={styles.genderRadioBtns}>{genderRadioBtns}</View>
+        </View>
+        <View style={styles.col}>
+          <Text style={styles.title}>Breed</Text>
+          <RNPickerSelect
+            style={{ ...pickerSelectStyles }}
+            onValueChange={(value) => setBreed(value)}
+            value={breed}
+            items={breeds}
           />
-          <IconButton
-            style={styles.camera}
-            icon="camera"
-            size={30}
-            color={Colors.black}
-            onPress={ImageButtonOnPress}
+        </View>
+        <View style={styles.col}>
+          <Text style={styles.title}>Age</Text>
+          <RNPickerSelect
+            placeholder={{
+              label: "Select the age range...",
+              value: null,
+            }}
+            style={{ ...pickerSelectStyles }}
+            onValueChange={(value) => setAge(value)}
+            value={age}
+            items={ages}
           />
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.radarChartTouch}
-          onPress={editRadarChart}
-        >
-          <RadarChart data={data} />
-        </TouchableOpacity>
-      </View>
-      <View style={styles.col}>
-        <Text style={styles.title}>Gender</Text>
-        <View style={styles.genderRadioBtns}>{genderRadioBtns}</View>
-      </View>
-      <View style={styles.col}>
-        <Text style={styles.title}>Breed</Text>
-        <RNPickerSelect
-          style={{ ...pickerSelectStyles }}
-          onValueChange={(value) => setBreed(value)}
-          value={breed}
-          items={breeds}
-        />
-      </View>
-      <View style={styles.col}>
-        <Text style={styles.title}>Age</Text>
-        <RNPickerSelect
-          placeholder={{
-            label: "Select the age range...",
-            value: null,
-          }}
-          style={{ ...pickerSelectStyles }}
-          onValueChange={(value) => setAge(value)}
-          value={age}
-          items={ages}
-        />
-      </View>
-      <View style={styles.col}>
-        <Text style={styles.title}>City</Text>
-        <RNPickerSelect
-          placeholder={{
-            label: "Select a city...",
-            value: null,
-          }}
-          style={{ ...pickerSelectStyles }}
-          onValueChange={(value) => setCity(value)}
-          value={city}
-          items={cities}
-        />
-      </View>
-      <View style={styles.col}>
-        <Text style={styles.title}>Address</Text>
-        <TextInput
-          multiline
-          style={styles.address}
-          onChangeText={(text) => setAddress(text)}
-          value={address}
-        />
-      </View>
-      <View style={styles.col}>
-        <Text style={styles.title}>Tags</Text>
-        <Tagging style={tagStyles.container} />
-      </View>
-      <View style={styles.col}>
-        <Text style={styles.title}>Description</Text>
-        <TextInput
-          multiline
-          style={styles.descriptionText}
-          onChangeText={(text) => setDescription(text)}
-          value={description}
-        />
-      </View>
-    </ScrollView>
+        </View>
+        <View style={styles.col}>
+          <Text style={styles.title}>City</Text>
+          <RNPickerSelect
+            placeholder={{
+              label: "Select a city...",
+              value: null,
+            }}
+            style={{ ...pickerSelectStyles }}
+            onValueChange={(value) => setCity(value)}
+            value={city}
+            items={cities}
+          />
+        </View>
+        <View style={styles.col}>
+          <Text style={styles.title}>Address</Text>
+          <TextInput
+            multiline
+            style={styles.address}
+            onChangeText={(text) => setAddress(text)}
+            value={address}
+          />
+        </View>
+        <View style={styles.col}>
+          <Text style={styles.title}>Tags</Text>
+          <Tagging style={tagStyles.container} />
+        </View>
+        <View style={styles.col}>
+          <Text style={styles.title}>Description</Text>
+          <TextInput
+            multiline
+            style={styles.descriptionText}
+            onChangeText={(text) => setDescription(text)}
+            value={description}
+          />
+        </View>
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 };
 
@@ -255,6 +265,8 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "#fff",
     flex: 1,
+  },
+  scrollView: {
     paddingTop: 10,
     paddingLeft: 20,
   },

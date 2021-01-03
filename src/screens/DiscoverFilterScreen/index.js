@@ -75,6 +75,7 @@ const selectData = [
 ];
 
 const DiscoverFilterScreen = ({ navigation }) => {
+  console.disableYellowBox = true;
   const initialSelectState = {
     species: "",
     breed: "",

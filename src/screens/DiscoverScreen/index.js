@@ -13,6 +13,7 @@ import _, { filter } from "lodash";
 
 const Discover = ({ navigation, route }) => {
   const [{ animals }] = useContext(SessionContext);
+  console.disableYellowBox = true;
 
   const filters = route.params && route.params.filters;
 

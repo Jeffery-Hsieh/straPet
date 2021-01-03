@@ -13,9 +13,7 @@ const VolunteerScreen = () => {
         <View style={{ flex: 1, flextDirection: "column" }}>
           <Text style={styles.information}>{shelter}</Text>
           <View style={styles.informationContainer}>
-            <Text style={styles.information}>
-              {breed != "mixed" ? breed : null}
-            </Text>
+            <Text style={[styles.information, styles.breed]}>{breed}</Text>
             <IconButton
               icon={gender == "female" ? "gender-male" : "gender-female"}
               color={gender == "female" ? Colors.blue500 : Colors.red500}
@@ -47,6 +45,9 @@ const styles = StyleSheet.create({
   information: {
     fontSize: 17,
     color: "grey",
+  },
+  breed: {
+    textTransform: "capitalize",
   },
   imageStyle: {
     width: 50,
