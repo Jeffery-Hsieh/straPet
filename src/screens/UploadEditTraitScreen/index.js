@@ -14,7 +14,7 @@ const traitsLabels = {
 };
 
 const EditTraitScreen = ({ navigation, route }) => {
-  const { initTraits } = route.params;
+  const { initTraits, setParentTraits } = route.params;
   const [traits, setTraits] = useState(initTraits);
   const data = Object.keys(traits).map((key) => traits[key]);
 
@@ -24,15 +24,19 @@ const EditTraitScreen = ({ navigation, route }) => {
         <IconButton
           icon="check"
           onPress={() => {
-            navigation.navigate("Upload", { initTraits: { ...traits } });
+            navigation.goBack("Upload");
           }}
         />
       ),
     });
-  }, [navigation, traits]);
+  }, [navigation]);
 
   const handleSliderChange = (trait, newValue) => {
     setTraits({
+      ...traits,
+      [trait]: newValue,
+    });
+    setParentTraits({
       ...traits,
       [trait]: newValue,
     });

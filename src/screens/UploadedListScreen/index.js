@@ -10,7 +10,6 @@ import SessionContext from "../../store/context";
 import { IconButton, Colors, Avatar } from "react-native-paper";
 
 const UploadedListScreen = ({ navigation }) => {
-  console.disableYellowBox = true;
   const [session] = useContext(SessionContext);
 
   const favoritelist = session.animals.map(

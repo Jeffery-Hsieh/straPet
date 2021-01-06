@@ -8,8 +8,6 @@ import {
   Platform,
   ScrollView,
   ActionSheetIOS,
-  Alert,
-  Keyboard,
 } from "react-native";
 import RNPickerSelect from "react-native-picker-select";
 import {
@@ -20,12 +18,11 @@ import {
   Colors,
 } from "react-native-paper";
 import useGetImagePicker from "../../hooks/useGetImagePicker";
-import CameraModule from "../../components/Camera";
 
 import RadarChart from "../../components/RadarChart";
 import TagInput from "react-native-tags-input";
 
-export class Tagging extends React.Component {
+class Tagging extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -80,16 +77,14 @@ const ages = [
 ];
 
 const UploadScreen = ({ navigation, route }) => {
-  const initTraits = route.params
-    ? route.params.initTraits
-    : {
-        extraverted: 0,
-        friendly: 0,
-        energetic: 0,
-        selfControl: 0,
-        size: 0,
-        appetite: 0,
-      };
+  const initTraits = {
+    extraverted: 0,
+    friendly: 0,
+    energetic: 0,
+    selfControl: 0,
+    size: 0,
+    appetite: 0,
+  };
 
   const [gender, setGender] = useState("Unknown");
   const [breed, setBreed] = useState("");
@@ -99,10 +94,10 @@ const UploadScreen = ({ navigation, route }) => {
   const [description, setDescription] = useState("");
 
   const [traits, setTraits] = useState(initTraits);
-  const [{ image }, onPickImage] = useGetImagePicker(null);
-  const [cameraImage, setCameraImage] = useState(null);
-  const [camera, setShowCamera] = useState(false);
-  const [hasPermission, setHasPermission] = useState(null);
+  const [image, onPickImage] = useGetImagePicker(null);
+  // const [cameraImage, setCameraImage] = useState(null);
+  // const [camera, setShowCamera] = useState(false);
+  // const [hasPermission, setHasPermission] = useState(false);
 
   const data = Object.keys(traits).map((key) => traits[key]);
 
@@ -117,10 +112,11 @@ const UploadScreen = ({ navigation, route }) => {
     </TouchableOpacity>
   ));
 
-  useEffect(() => setTraits(initTraits), [initTraits]);
-
   const editRadarChart = () => {
-    navigation.push("EditTrait", { initTraits: { ...traits } });
+    navigation.push("EditTrait", {
+      initTraits: { ...traits },
+      setParentTraits: setTraits,
+    });
   };
 
   useLayoutEffect(() => {
@@ -132,132 +128,124 @@ const UploadScreen = ({ navigation, route }) => {
         />
       ),
     });
-  }, [navigation, setDescription]);
+  }, [navigation]);
 
-  const ImageButtonOnPress = () =>
+  const ImageButtonOnPress = () => {
     ActionSheetIOS.showActionSheetWithOptions(
       {
         options: ["Cancel", "Camera", "Album"],
         cancelButtonIndex: 0,
       },
       (buttonIndex) => {
-        if (buttonIndex === 0) {
-          // cancel action
-        } else if (buttonIndex === 1) {
-          if (hasPermission === null || hasPermission === false) {
-            Alert.alert(
-              "Message",
-              "Camera Permission fail",
-              [{ text: "OK", onPress: () => console.log("OK Pressed") }],
-              { cancelable: false }
-            );
-          } else {
-            setShowCamera(true);
-          }
-        } else if (buttonIndex === 2) {
-          onPickImage();
+        switch (buttonIndex) {
+          case 0:
+            return;
+          case 1:
+            if (hasPermission) {
+              setShowCamera(true);
+            }
+            return;
+          case 2:
+            onPickImage();
         }
       }
     );
-
-  useEffect(() => {
-    (async () => {
-      const { status } = await Camera.requestPermissionsAsync();
-      setHasPermission(status === "granted");
-    })();
-  }, []);
+  };
+  // useEffect(() => {
+  //   (async () => {
+  //     const { status } = await Camera.requestPermissionsAsync();
+  //     setHasPermission(status === "granted");
+  //   })();
+  // }, []);
 
   return (
-    <KeyboardAvoidingView
-      style={styles.container}
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
-    >
-      <ScrollView style={styles.scrollView}>
-        <View style={styles.touchView}>
-          <TouchableOpacity style={styles.avatarTouch}>
-            <Avatar.Image
-              size={120}
-              source={{ uri: image }}
-              style={{ backgroundColor: "#04DAC4" }}
-            />
-            <IconButton
-              style={styles.camera}
-              icon="camera"
-              size={30}
-              color={Colors.black}
-              onPress={ImageButtonOnPress}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.radarChartTouch}
-            onPress={editRadarChart}
-          >
-            <RadarChart data={data} />
-          </TouchableOpacity>
-        </View>
-        <View style={styles.col}>
-          <Text style={styles.title}>Gender</Text>
-          <View style={styles.genderRadioBtns}>{genderRadioBtns}</View>
-        </View>
-        <View style={styles.col}>
-          <Text style={styles.title}>Breed</Text>
-          <RNPickerSelect
-            style={{ ...pickerSelectStyles }}
-            onValueChange={(value) => setBreed(value)}
-            value={breed}
-            items={breeds}
+    <ScrollView style={styles.scrollView}>
+      <View style={styles.touchView}>
+        <TouchableOpacity style={styles.avatarTouch}>
+          <Avatar.Image
+            size={120}
+            source={image ? { uri: image } : null}
+            style={{ backgroundColor: "#04DAC4" }}
           />
-        </View>
-        <View style={styles.col}>
-          <Text style={styles.title}>Age</Text>
-          <RNPickerSelect
-            placeholder={{
-              label: "Select the age range...",
-              value: null,
-            }}
-            style={{ ...pickerSelectStyles }}
-            onValueChange={(value) => setAge(value)}
-            value={age}
-            items={ages}
+          <IconButton
+            style={styles.camera}
+            icon="camera"
+            size={30}
+            color={Colors.black}
+            onPress={ImageButtonOnPress}
           />
-        </View>
-        <View style={styles.col}>
-          <Text style={styles.title}>City</Text>
-          <RNPickerSelect
-            placeholder={{
-              label: "Select a city...",
-              value: null,
-            }}
-            style={{ ...pickerSelectStyles }}
-            onValueChange={(value) => setCity(value)}
-            value={city}
-            items={cities}
-          />
-        </View>
-        <View style={styles.col}>
-          <Text style={styles.title}>Address</Text>
-          <TextInput
-            multiline
-            style={styles.address}
-            onChangeText={(text) => setAddress(text)}
-            value={address}
-          />
-        </View>
-        <View style={styles.col}>
-          <Text style={styles.title}>Tags</Text>
-          <Tagging style={tagStyles.container} />
-        </View>
-        <View style={styles.col}>
-          <Text style={styles.title}>Description</Text>
-          <TextInput
-            multiline
-            style={styles.descriptionText}
-            onChangeText={(text) => setDescription(text)}
-            value={description}
-          />
-        </View>
-      </ScrollView>
-    </KeyboardAvoidingView>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.radarChartTouch}
+          onPress={editRadarChart}
+        >
+          <RadarChart data={data} />
+        </TouchableOpacity>
+      </View>
+      <View>
+        <Text style={styles.title}>Gender</Text>
+        <View style={styles.genderRadioBtns}>{genderRadioBtns}</View>
+      </View>
+      <View style={styles.col}>
+        <Text style={styles.title}>Breed</Text>
+        <RNPickerSelect
+          placeholder={{
+            label: "Select a breed...",
+          }}
+          style={{ ...pickerSelectStyles }}
+          onValueChange={(value) => setBreed(value)}
+          value={breed}
+          items={breeds}
+          onDonePress={() => console.log("Press")}
+        />
+      </View>
+      <View style={styles.col}>
+        <Text style={styles.title}>Age</Text>
+        <RNPickerSelect
+          placeholder={{
+            label: "Select the age range...",
+          }}
+          style={{ ...pickerSelectStyles }}
+          onValueChange={(value) => setAge(value)}
+          value={age}
+          items={ages}
+        />
+      </View>
+      <View style={styles.col}>
+        <Text style={styles.title}>City</Text>
+        <RNPickerSelect
+          placeholder={{
+            label: "Select a city...",
+          }}
+          style={{ ...pickerSelectStyles }}
+          onValueChange={(value) => setCity(value)}
+          value={city}
+          items={cities}
+        />
+      </View>
+      <View style={styles.col}>
+        <Text style={styles.title}>Address</Text>
+        <TextInput
+          multiline
+          style={styles.address}
+          onChangeText={(text) => setAddress(text)}
+          value={address}
+        />
+      </View>
+      <View style={styles.col}>
+        <Text style={styles.title}>Tags</Text>
+        <Tagging style={tagStyles.container} />
+      </View>
+      <View style={styles.col}>
+        <Text style={styles.title}>Description</Text>
+        <TextInput
+          multiline
+          style={styles.descriptionText}
+          onChangeText={(text) => setDescription(text)}
+          value={description}
+        />
+      </View>
+    </ScrollView>
   );
 };
 

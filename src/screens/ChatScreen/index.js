@@ -4,7 +4,6 @@ import { GiftedChat, Send } from "react-native-gifted-chat";
 import SessionContext from "../../store/context";
 import useGetMessages from "../../hooks/useGetMessages";
 import { IconButton } from "react-native-paper";
-import { toGiftChatMessageBlock } from "../../util/giftChatHelper";
 import * as firebase from "firebase";
 
 const ChatScreen = ({ route }) => {
